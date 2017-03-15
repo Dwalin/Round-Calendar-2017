@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>{% include "./inc/head.html" %}</head>
+
+<body>
+
+<!-- ko if: loggedIn -->
+<div class="mj-logout">
+	<a class="mj-link" data-bind="click: logOut" href="#">Log out</a>
+</div>
+<!-- /ko -->
+
+<!-- ko ifnot: loggedIn -->
+<div class="mj-login__overlay">
+
+	<div class="mj-login__box">
+
+		<div class="mj-login__logo"></div>
+		<h1 class="mj-login__header">2017 Round&nbsp;Calendar</h1>
+		<p class="mj-login__description">
+			The best way to keep your life chronicle now comes to web! Meet the Round Calendar by Mjolnir.
+		</p>
+
+		<form data-bind="submit: login" class="mj-login__form">
+			<input class="mj-input" data-bind="value: loginForm.login, css: validation" placeholder="email">
+			<input class="mj-input" type="password" data-bind="value: loginForm.password" placeholder="password">
+		</form>
+
+
+
+		<button data-bind="click: login, css: validation" class="mj-login__button mj-button">
+			<!-- ko if: showRegister -->
+				Create free account
+			<!-- /ko -->
+
+			<!-- ko if: showLogin -->
+				Log in
+			<!-- /ko -->
+		</button>
+
+
+		<div class="mj-login__additional">
+
+			<!-- ko if: showLogin -->
+			<a class="mj-link" data-bind="click: toggleState" href="#">Create a free account</a>
+			<!-- /ko -->
+
+			<!-- ko if: showRegister -->
+			<a class="mj-link" data-bind="click: toggleState" href="#">I already have an account</a>
+			<!-- /ko -->
+
+			<!--<a class="mj-link" href="#">Forgot password?</a>-->
+
+		</div>
+
+	</div>
+</div>
+<!-- /ko -->
+
+
+
+<!-- ko if: loggedIn -->
+
+<div class="mj-calendar__form">
+
+	<input class="mj-input js-input" data-bind="value: noteForm.note" placeholder="What happened?">
+
+	<input class="mj-input" data-bind="value: noteForm.day, datepicker" placeholder="When?">
+
+	<button data-bind="click: addNote" class="mj-login__button mj-button">
+		Post it!
+	</button>
+
+</div>
+
+<!-- /ko -->
+
+<div class="mj-calendar__wrapper">
+
+	<div class="mj-calendar">
+
+		<svg class="mj-calendar__svg"
+			 preserveAspectRatio="none">
+		</svg>
+
+	</div>
+
+</div>
+
+</body>
+
+</html>

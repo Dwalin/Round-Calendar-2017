@@ -1,0 +1,256 @@
+@import 'normalize.css';
+body {
+  overflow: hidden;
+/*font-family: 'Bad Script', cursive;*/
+  font-family: 'Roboto', serif;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 20px;
+}
+body * {
+  box-sizing: border-box;
+}
+.mj-calendar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 4px 8px -4px rgba(0,0,0,0.25);
+}
+.mj-calendar * {
+  shape-rendering: auto;
+}
+.mj-calendar__month {
+  font-size: 10px;
+  font-family: 'Bad Script', cursive;
+}
+.mj-calendar__note {
+  fill: #000;
+  font-size: 4px;
+  font-family: 'Bad Script', cursive;
+}
+.mj-calendar__date {
+  font-size: 2.5px;
+  opacity: 0.5;
+}
+.mj-calendar__date__weekend {
+  fill: #00008c;
+}
+.mj-calendar__dateWrap {
+  width: 20px;
+  height: 20px;
+  overflow: visible !important;
+  transition: all 0.25s ease-in-out;
+}
+.mj-calendar__day:hover .mj-calendar__dateWrap {
+  opacity: 1;
+  display: block;
+}
+.mj-calendar__line {
+  stroke: rgba(0,70,140,0.1);
+  stroke-width: 0.25;
+  fill: none;
+}
+.mj-calendar__line._additional {
+  stroke: rgba(0,0,0,0.15);
+  stroke-width: 0.25;
+/*display: none;*/
+  shape-rendering: geometricPrecision;
+}
+.mj-calendar__circle {
+  cursor: pointer;
+  transition: 0.5s all ease-in-out;
+  fill: #fff;
+  stroke: rgba(0,70,140,0.25);
+  stroke-width: 0.25;
+}
+.mj-calendar__circle._weekend {
+  stroke: rgba(0,70,140,0.25);
+}
+.mj-calendar__circle:hover {
+  stroke: rgba(0,70,140,0);
+  fill: #0079f2;
+}
+.mj-calendar svg {
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.mj-calendar__svg {
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+}
+.mj-calendar__wrapper {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  position: relative;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.05);
+}
+.mj-login__overlay {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.15);
+}
+.mj-login__additional {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mj-login__additional>* {
+  margin-bottom: 10px;
+}
+.mj-login__box {
+  background-color: #fff;
+  padding: 40px 60px 10px;
+  max-width: 420px;
+  margin: 20px;
+  text-align: center;
+  box-shadow: 0 8px 32px -16px #000;
+}
+.mj-login__box>* {
+  margin-bottom: 20px;
+  width: 100%;
+}
+.mj-login__header {
+  line-height: 35px;
+}
+.mj-login__description {
+  opacity: 0.5;
+}
+.mj-input {
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 20px;
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid rgba(0,0,0,0.15);
+  padding-left: 5px;
+}
+.mj-input._error {
+  border: 1px solid rgba(120,0,0,0.5);
+}
+.mj-input._error:after {
+  content: "This does not look like an email.";
+}
+.mj-button {
+  height: 50px;
+  line-height: 50px;
+  color: #fff;
+  font-size: 120%;
+  border: none;
+  border-radius: 2px;
+  background-color: #00468c;
+  transition: 0.15s all ease-in-out;
+  cursor: pointer;
+}
+.mj-button:hover {
+  background-color: #0053a6;
+}
+.mj-button._error {
+  background-color: #dfdfdf;
+  cursor: default;
+}
+.mj-link {
+  text-decoration: none;
+  color: #00468c;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(0,70,140,0.15);
+  transition: 0.15s all ease-in-out;
+}
+.mj-link:hover {
+  border-bottom: 1px solid rgba(0,70,140,0.5);
+}
+.mj-logout {
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 200;
+}
+.mj-calendar__form {
+  position: absolute;
+  background-color: #fff;
+  padding: 4px 2px;
+  z-index: 250;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  display: flex;
+  box-shadow: 0 8px 32px -16px #000;
+}
+.mj-calendar__form>* {
+  margin: 0 2px;
+  min-width: 140px;
+  white-space: nowrap;
+}
+.mj-calendar__form .mj-button {
+  text-align: center;
+}
+.mj-calendar__form .mj-input {
+  margin-bottom: 0;
+}
+.mj-calendar__form .mj-input:first-child {
+  min-width: 400px;
+}
+.ui-datepicker {
+  border: none !important;
+  background: #fff !important;
+  box-shadow: 0 4px 8px -4px rgba(0,0,0,0.25);
+  margin-left: -20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ui-datepicker-header {
+  padding: 10px 20px;
+  display: flex;
+  background: none !important;
+  color: #00468c;
+  border: none !important;
+}
+.ui-datepicker-calendar thead th {
+  font-weight: 200;
+  font-size: 80%;
+  opacity: 0.25;
+}
+.ui-state-default {
+  width: 100%;
+  min-width: 100%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #00468c;
+  font-family: 'Roboto', serif;
+  border: none !important;
+  background: none !important;
+  font-weight: 200;
+  font-size: 12px;
+  padding: 10px;
+}
+.ui-state-hover {
+  background: rgba(0,70,140,0.15) !important;
+  color: #00468c !important;
+}
+.ui-datepicker-prev {
+  order: 1;
+}
+.ui-datepicker-title {
+  order: 2;
+  color: #505050;
+}
+.ui-datepicker-next {
+  order: 3;
+}
