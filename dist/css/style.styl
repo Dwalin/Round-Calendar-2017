@@ -12,6 +12,10 @@ body {
 
 $c-main = rgba(0, 70, 140, 1);
 
+strokeC(degr)
+  stroke: alpha(hue(hsl(0deg, 75%, 50%), degr * 360 / 365), .75);
+  foo degr
+
 body * {
   box-sizing: border-box;
 }
@@ -96,6 +100,13 @@ body * {
       stroke: alpha($c-main, .25);
       stroke-width: .25;
 
+      for n in 1..365 {
+
+        &:nth-child({n}) {
+          strokeC(n);
+        }
+      }
+
 
       &:first-child {
         //fill: rgba(120, 0, 0, 1);
@@ -137,6 +148,7 @@ body * {
 
 
 @import 'block/mj-login.styl';
+
 
 
 

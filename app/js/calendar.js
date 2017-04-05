@@ -533,6 +533,7 @@ module.exports = function (calendar) {
 				.attr("data-day", i)
 				.attr("data-bind", "click: updateDate(" + j + ")")
 				.classed("mj-calendar__circle", true)
+				.classed("_" + i, true)
 				.classed("_weekend", function(){
 
 					return ((j % 7 == 0) || (j % 7 == 6)) ? true : false;
