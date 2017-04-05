@@ -634,6 +634,8 @@ module.exports = function (calendar) {
 
 			var simplify1 = j*9.86;
 
+			console.log(simplify1);
+
 			textBox.append("text")
 				.text(
 				i+1 + ' ' + week[date.getDay()]
