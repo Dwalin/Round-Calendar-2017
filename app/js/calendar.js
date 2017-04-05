@@ -41,7 +41,7 @@ $(function() {
 		};
 
 		self.updateDate = function(num) {
-			console.log("ololo");
+
 		};
 
 		self.addNote = function() {
@@ -273,6 +273,18 @@ $(function() {
 		}
 	};
 
+	ko.bindingHandlers.note = {
+		init: function(element, valueAccessor) {
+
+
+			$(document).on("click", ".mj-calendar__circle", function(){
+
+				$(element).val( $(this).parent().attr("data-note") );
+
+			});
+		}
+	};
+
 	ko.applyBindings( new calendarVM() );
 
 
@@ -336,9 +348,6 @@ $(function() {
 	//];
 
 	renderCalendar(graph);
-
-
-
 
 
 });
