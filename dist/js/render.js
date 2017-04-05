@@ -117,8 +117,7 @@ module.exports = function (calendar) {
 			//  Days
 
 			var day = calendar.append("g")
-				.classed("mj-calendar__day", true)
-				.classed("_" + k, true);
+				.classed("mj-calendar__day", true);
 
 			day.append("circle")
 				.attr("r", 1.5)
@@ -159,8 +158,6 @@ module.exports = function (calendar) {
 			var date = new Date(2017, k, i);
 
 			var simplify1 = j*9.86;
-
-			console.log(simplify1);
 
 			textBox.append("text")
 				.text(
@@ -216,5 +213,3 @@ module.exports = function (calendar) {
 
 
 };
-
-
