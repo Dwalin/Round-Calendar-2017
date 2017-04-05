@@ -13,7 +13,7 @@ body {
 $c-main = rgba(0, 70, 140, 1);
 
 strokeC(degr)
-  stroke: alpha(hue(hsl(180deg, 75%, 50%), degr * 360 / 365), .75);
+  stroke: alpha(hue(hsl(90deg, 75%, 50%), degr * 360 / 400), .75);
 
 body * {
   box-sizing: border-box;
@@ -71,7 +71,7 @@ body * {
 
     &__day {
 
-      for n in 1..365 {
+      for n in 1..400 {
 
         &:nth-child({n}) {
           foo n;
