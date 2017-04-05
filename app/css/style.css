@@ -2474,7 +2474,8 @@ body * {
 }
 .mj-calendar__circle:hover {
   stroke: rgba(0,70,140,0);
-  fill: #0079f2;
+  stroke-width: 1;
+/*fill: lighten($c-main, 20);*/
 }
 .mj-calendar svg {
   border: 1px solid rgba(0,0,0,0.1);
