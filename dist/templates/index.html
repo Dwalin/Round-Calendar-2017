@@ -31,11 +31,11 @@
 
 		<button data-bind="click: login, css: validation" class="mj-login__button mj-button">
 			<!-- ko if: showRegister -->
-				Create free account
+			Create free account
 			<!-- /ko -->
 
 			<!-- ko if: showLogin -->
-				Log in
+			Log in
 			<!-- /ko -->
 		</button>
 
@@ -64,7 +64,7 @@
 
 <div class="mj-calendar__form">
 
-	<input class="mj-input js-input" data-bind="value: noteForm.note" placeholder="What happened?">
+	<input class="mj-input js-input" data-bind="value: noteForm.note, note" placeholder="What happened?">
 
 	<input class="mj-input" data-bind="value: noteForm.day, datepicker" placeholder="When?">
 
