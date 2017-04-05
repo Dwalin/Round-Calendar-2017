@@ -138,12 +138,6 @@ body * {
   border: 1px solid rgba(0,0,0,0.15);
   padding-left: 5px;
 }
-.mj-input._error {
-  border: 1px solid rgba(120,0,0,0.5);
-}
-.mj-input._error:after {
-  content: "This does not look like an email.";
-}
 .mj-button {
   height: 50px;
   line-height: 50px;
@@ -158,10 +152,6 @@ body * {
 .mj-button:hover {
   background-color: #0053a6;
 }
-.mj-button._error {
-  background-color: #dfdfdf;
-  cursor: default;
-}
 .mj-link {
   text-decoration: none;
   color: #00468c;
@@ -171,39 +161,6 @@ body * {
 }
 .mj-link:hover {
   border-bottom: 1px solid rgba(0,70,140,0.5);
-}
-.mj-logout {
-  padding: 20px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 200;
-}
-.mj-calendar__form {
-  position: absolute;
-  background-color: #fff;
-  padding: 4px 2px;
-  z-index: 250;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 4px;
-  display: flex;
-  box-shadow: 0 8px 32px -16px #000;
-}
-.mj-calendar__form>* {
-  margin: 0 2px;
-  min-width: 140px;
-  white-space: nowrap;
-}
-.mj-calendar__form .mj-button {
-  text-align: center;
-}
-.mj-calendar__form .mj-input {
-  margin-bottom: 0;
-}
-.mj-calendar__form .mj-input:first-child {
-  min-width: 400px;
 }
 .ui-datepicker {
   border: none !important;

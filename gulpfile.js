@@ -1,13 +1,12 @@
 var gulp = require('gulp');
 var data = require('gulp-data');
 var watch = require('gulp-watch');
+
 var stylus = require('gulp-stylus');
 var gulpBrowser = require("gulp-browser");
-
-var browserSync = require('browser-sync').create();
-//var source = require('vinyl-source-stream');
 var nunjucks = require('gulp-nunjucks');
 
+var browserSync = require('browser-sync').create();
 
 gulp.task('default', function() {
 
@@ -25,11 +24,11 @@ gulp.task('default', function() {
 	});
 
 	watch('./dist/js/**/*.js', function(){
-		gulp.run (['js-watch']);
+		gulp.run (['compile-js']);
 	});
 
 	watch("./dist/templates/**/*.html", function() {
-		gulp.run (['template-watch']);
+		gulp.run (['compile-html']);
 	});
 
 });
@@ -52,14 +51,4 @@ gulp.task('compile-html', function(){
 	return gulp.src('./dist/templates/index.html')
 		.pipe(nunjucks.compile())
 		.pipe(gulp.dest('./'));
-});
-
-gulp.task('template-watch', ['compile-html'], function (done) {
-	browserSync.reload();
-	done();
-});
-
-gulp.task('js-watch', ['compile-js'], function (done) {
-	browserSync.reload();
-	done();
 });
