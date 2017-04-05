@@ -159,7 +159,8 @@ module.exports = function (calendar) {
                 //  Days
 
                 var day = calendar.append("g")
-                    .classed("mj-calendar__day", true);
+                    .classed("mj-calendar__day", true)
+					.classed("_" + k, true);
 
                 day.append("circle")
                     .attr("r", 1.5)
@@ -167,7 +168,6 @@ module.exports = function (calendar) {
                     .attr("data-day", i)
 					.attr("data-bind", "click: updateDate(" + j + ")")
                     .classed("mj-calendar__circle", true)
-                    .classed("_" + k, true)
                     .classed("_weekend", function(){
 
                         return ((j % 7 == 0) || (j % 7 == 6)) ? true : false;
