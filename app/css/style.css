@@ -1165,6 +1165,7 @@ body * {
 }
 .mj-calendar__circle._weekend {
   stroke: rgba(0,70,140,0.25);
+  stroke-width: 0.5;
 }
 .mj-calendar__circle:hover {
   stroke: rgba(0,70,140,0);
