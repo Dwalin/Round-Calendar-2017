@@ -14,7 +14,6 @@ $c-main = rgba(0, 70, 140, 1);
 
 strokeC(degr)
   stroke: alpha(hue(hsl(0deg, 75%, 50%), degr * 360 / 365), .75);
-  foo degr
 
 body * {
   box-sizing: border-box;
@@ -72,6 +71,13 @@ body * {
 
     &__day {
 
+      for n in 1..365 {
+
+        &:nth-child({n})>circle {
+          strokeC(n);
+        }
+      }
+
       &:hover {
         .mj-calendar__dateWrap {
           opacity: 1;
@@ -99,13 +105,6 @@ body * {
       fill: white;
       stroke: alpha($c-main, .25);
       stroke-width: .25;
-
-      for n in 1..365 {
-
-        &:nth-child({n}) {
-          strokeC(n);
-        }
-      }
 
 
       &:first-child {
