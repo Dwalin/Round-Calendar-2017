@@ -73,7 +73,9 @@ body * {
 
       for n in 1..365 {
 
-        foo n;
+        &:nth-child({n}) {
+          foo n;
+        }
 
         &:nth-child({n})>circle {
           strokeC(n);
