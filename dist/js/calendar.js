@@ -73,7 +73,7 @@ $(function() {
 
 					$(".js-input").val('');
 
-					console.log(data);
+					//console.log(data);
 					self.renderNotes();
 				},
 				error: function(data) {
