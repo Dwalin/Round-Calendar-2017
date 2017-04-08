@@ -255,7 +255,6 @@ $(function() {
 		self.renderNotes();
 	};
 
-
 	ko.bindingHandlers.datepicker = {
 		init: function(element, valueAccessor) {
 			$(element).datepicker({
@@ -271,15 +270,12 @@ $(function() {
 			});
 		}
 	};
-
 	ko.bindingHandlers.note = {
 		init: function(element, valueAccessor) {
-
-
 			$(document).on("click", ".mj-calendar__circle", function(){
-
+				console.log("Clicked!");
+				console.log( $(this).parent().attr("data-note") );
 				$(element).val( $(this).parent().attr("data-note") );
-
 			});
 		}
 	};
@@ -288,9 +284,6 @@ $(function() {
 
 
 	// ! Knockout stuff //
-
-
-
 
 	var calendarWrapper = d3.select(".mj-calendar");
 	var calendar = d3.select(".mj-calendar__svg");
