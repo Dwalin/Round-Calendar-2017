@@ -154,7 +154,9 @@ class IndexController extends RestController {
 
         foreach ($notes as $note) {
             $processedNotes[] = $note;
-            $counters[] = array($note["day"], $note["counter"]);
+            if ($note["counter"]) {
+                $counters[] = array($note["day"], $note["counter"]);
+            }
         }
 
 
