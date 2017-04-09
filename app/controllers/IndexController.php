@@ -292,7 +292,7 @@ class IndexController extends RestController {
             $response->setJsonContent(
                 array(
                     'status' => 'OK',
-                    'action' => 'created',
+                    'action' => 'Added a counter',
                     'data'   => $note
                 )
             );
