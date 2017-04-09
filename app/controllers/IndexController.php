@@ -217,8 +217,6 @@ class IndexController extends RestController {
             "calendar_id" => $calendar->toArray()[0]["id"]
         ]);
 
-        die($note);
-
         if ($note) {
             $note -> day           = $this->request->getPost('day');
             $note -> note          = $this->request->getPost('note');

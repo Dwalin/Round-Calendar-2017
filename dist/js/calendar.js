@@ -124,7 +124,7 @@ $(function() {
 				data: "",
 				url: "http://2017.fyi/api/users/current",
 				success: function(data) {
-					console.log("Refresh: Logged in.");
+					//console.log("Refresh: Logged in.");
 					self.loggedIn(true);
 					self.renderNotes();
 					//self.users(data.data);
@@ -273,8 +273,8 @@ $(function() {
 	ko.bindingHandlers.note = {
 		init: function(element, valueAccessor) {
 			$(document).on("click", ".mj-calendar__circle", function(){
-				console.log("Clicked!");
-				console.log( $(this).parent().attr("data-note") );
+				//console.log("Clicked!");
+				//console.log( $(this).parent().attr("data-note") );
 				$(element).val( $(this).parent().attr("data-note") );
 			});
 		}
