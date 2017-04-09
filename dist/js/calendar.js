@@ -64,6 +64,7 @@ $(function() {
 
 			var counterName = self.counterForm.name;
 			var counter = {};
+
 			counter[counterName] =  self.counterForm.value;
 
 			var data = {
