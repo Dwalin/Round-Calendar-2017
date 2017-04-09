@@ -192,9 +192,11 @@ $(function() {
 
 					if (counters) {
 						counters.each(function() {
-							self.counters.push(this);
+							self.counters.push(JSON.parse(this));
 						});
 					}
+
+					console.log(self.counters);
 				},
 				error: function(data) {
 					console.log("data");
