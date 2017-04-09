@@ -316,6 +316,17 @@ $(function() {
 		}
 	};
 
+	ko.bindingHandlers.counterAutocomplete = {
+		init: function(element, valueAccessor, allBindings) {
+
+			var source = allBindings.get('counterData') || ["Weight", "KM", "Working hours"];
+
+			$(element).autocomplete({
+				source: source
+			});
+		}
+	};
+
 	ko.bindingHandlers.datepicker = {
 		init: function(element, valueAccessor) {
 			$(element).datepicker({
