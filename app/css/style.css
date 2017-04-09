@@ -1463,6 +1463,13 @@ body * {
   z-index: 1000;
   width: 100%;
   height: 100%;
+}
+.cal-popup__black {
+  top: 0;
+  left: 0;
+  z-index: 1100;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0,0,0,0.85);
 }
 .cal-popup__box {
@@ -1473,6 +1480,7 @@ body * {
   padding: 40px;
   background-color: #fff;
   min-width: 400px;
+  z-index: 1200;
 }
 .cal-popup__title {
   font-size: 160%;
