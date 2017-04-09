@@ -62,10 +62,10 @@ $(function() {
 			var oneDay = 1000 * 60 * 60 * 24;
 			var day = Math.ceil(diff / oneDay);
 
-			var counterName = self.counterForm.name;
+			var counterName = self.counterForm.name();
 			var counter = {};
 
-			counter[counterName] =  self.counterForm.value;
+			counter[counterName] =  self.counterForm.value();
 
 			var data = {
 				counter: JSON.stringify(counter),
