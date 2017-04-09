@@ -213,11 +213,9 @@ class IndexController extends RestController {
         $calendar = $user->getCalendar();
 
         $note = Notes::findFirst([
-            "day" => $this->request->getPost('day'),
-            "calendar_id" => $calendar->toArray()[0]["id"]
+            "day = " . $this->request->getPost('day') . " AND calendar_id = " . $calendar->toArray()[0]["id"]
         ]);
 
-        die(var_dump($note));
 
         if ($note) {
             $note -> day           = $this->request->getPost('day');
