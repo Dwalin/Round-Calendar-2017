@@ -191,7 +191,7 @@ $(function() {
 					var counters = data.counters;
 
 					if (counters) {
-						counters.each(function() {
+						counters.forEach(function() {
 							self.counters.push(JSON.parse(this));
 						});
 					}
