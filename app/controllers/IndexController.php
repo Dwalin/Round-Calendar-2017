@@ -212,12 +212,21 @@ class IndexController extends RestController {
 
         $calendar = $user->getCalendar();
 
+        $note = Notes::findFirst([
+            "day" => $this->request->getPost('day'),
+            "calendar_id" => $calendar->toArray()[0]["id"]
+        ]);
 
-
-        $note = new Notes();
-        $note -> day           = $this->request->getPost('day');
-        $note -> note          = $this->request->getPost('note');
-        $note -> calendar_id   = $calendar->toArray()[0]["id"];
+        if ($note) {
+            $note -> day           = $this->request->getPost('day');
+            $note -> note          = $this->request->getPost('note');
+            $note -> calendar_id   = $calendar->toArray()[0]["id"];
+        } else {
+            $note = new Notes();
+            $note -> day           = $this->request->getPost('day');
+            $note -> note          = $this->request->getPost('note');
+            $note -> calendar_id   = $calendar->toArray()[0]["id"];
+        }
 
         if ($note->save() == true) {
             $response->setStatusCode(201, "Success");
@@ -250,8 +259,6 @@ class IndexController extends RestController {
         return $response;
 
     }
-
-
 
     /**
      * @Post("/api/users/register")

@@ -9,6 +9,7 @@ class Notes extends Model
     public $id;
     public $note;
     public $day;
+    public $counter;
     public $calendar_id;
     private $created;
     private $modified;
