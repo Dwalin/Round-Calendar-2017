@@ -32,6 +32,34 @@
 <!-- /ko -->
 
 <!-- ko ifnot: loggedIn -->
+
+<div class="cal-popup__overlay js-popup js-popup__note js-hidden js-close" data-bind="popup">
+
+	<div class="cal-popup__box">
+
+		<div class="cal-popup__close"></div>
+
+		<div class="cal-popup__title">Save a memory</div>
+		<div class="cal-popup__title _sub">The note you write will be saved on your calendar.</div>
+
+
+		<form class="cal-popup__form">
+
+			<input class="cal-popup__input js-input" data-bind="value: noteForm.note, note" placeholder="What happened?">
+
+			<input type="hidden" class="cal-popup__input" data-bind="value: noteForm.day, datepicker" placeholder="When?">
+
+			<button data-bind="click: addNote" class="cal-popup__button mj-button js-close">
+				Save it!
+			</button>
+
+		</form>
+
+	</div>
+
+</div>
+
+
 <div class="mj-login__overlay">
 
 	<div class="mj-login__box">
@@ -76,25 +104,9 @@
 
 	</div>
 </div>
-<!-- /ko -->
-
-
-
-<!-- ko if: loggedIn -->
-
-<div class="mj-calendar__form">
-
-	<input class="mj-input js-input" data-bind="value: noteForm.note, note" placeholder="What happened?">
-
-	<input class="mj-input" data-bind="value: noteForm.day, datepicker" placeholder="When?">
-
-	<button data-bind="click: addNote" class="mj-login__button mj-button">
-		Post it!
-	</button>
-
-</div>
 
 <!-- /ko -->
+
 
 <div class="mj-calendar__wrapper">
 

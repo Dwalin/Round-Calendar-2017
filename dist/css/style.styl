@@ -219,3 +219,57 @@ body * {
     color: rgba(80, 80, 80, 1);
   }
   .ui-datepicker-next {order: 3;}
+
+
+.cal-popup {
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .85);
+  }
+
+  &__box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 40px;
+
+    background-color: rgba(255, 255, 255, 1);
+
+    min-width: 400px;
+  }
+
+  &__title {
+    font-size: 160%;
+    text-align: center;
+    margin-bottom: 20px;
+
+    &._sub {
+      font-size: 90%;
+      opacity: .5;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 5px;
+
+    margin-bottom: 20px;
+  }
+}
+
+.js-hidden {
+  display: none;
+}

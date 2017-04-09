@@ -154,7 +154,6 @@ $(function() {
 
 		};
 
-
 		self.login = function() {
 
 			var data = {
@@ -255,6 +254,16 @@ $(function() {
 		self.renderNotes();
 	};
 
+	ko.bindingHandlers.popup = {
+		init: function(element, valueAccessor) {
+
+			$(".js-close").on("click", function(){
+				console.log("Hiding popup.");
+				$(element).addClass("js-hidden");
+			});
+		}
+	};
+
 	ko.bindingHandlers.datepicker = {
 		init: function(element, valueAccessor) {
 			$(element).datepicker({
@@ -270,11 +279,11 @@ $(function() {
 			});
 		}
 	};
+
 	ko.bindingHandlers.note = {
 		init: function(element, valueAccessor) {
 			$(document).on("click", ".mj-calendar__circle", function(){
-				//console.log("Clicked!");
-				//console.log( $(this).parent().attr("data-note") );
+				$(".js-popup__note").removeClass("js-hidden");
 				$(element).val( $(this).parent().attr("data-note") );
 			});
 		}

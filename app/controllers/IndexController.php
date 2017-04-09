@@ -261,6 +261,66 @@ class IndexController extends RestController {
     }
 
     /**
+     * @Post("/api/calendar/counter/")
+     */
+    public function noteCounter() {
+
+        $response = new Response();
+        $request = $this->request->getPost();
+
+        $userId = $this->session->get("user")['id'];
+        $user = Users::findFirst($userId);
+
+        $calendar = $user->getCalendar();
+
+        $note = Notes::findFirst([
+            "day = " . $this->request->getPost('day') . " AND calendar_id = " . $calendar->toArray()[0]["id"]
+        ]);
+
+        if ($note) {
+            $note -> day           = $this->request->getPost('day');
+            $note -> counter       = $this->request->getPost('counter');
+            $note -> calendar_id   = $calendar->toArray()[0]["id"];
+        } else {
+            $note = new Notes();
+            $note -> day           = $this->request->getPost('day');
+            $note -> counter       = $this->request->getPost('counter');
+            $note -> calendar_id   = $calendar->toArray()[0]["id"];
+        }
+
+        if ($note->save() == true) {
+            $response->setStatusCode(201, "Success");
+            $response->setJsonContent(
+                array(
+                    'status' => 'OK',
+                    'action' => 'created',
+                    'data'   => $note
+                )
+            );
+        } else {
+            // Change the HTTP status
+            $response->setStatusCode(409, "Conflict");
+
+            // Send errors to the client
+            $errors = array();
+            foreach ($note->getMessages() as $message) {
+                $errors[] = $message->getMessage();
+            }
+
+            $response->setJsonContent(
+                array(
+                    'status'   => 'ERROR',
+                    'messages' => $errors,
+                    'calendar' => $calendar->toArray()
+                )
+            );
+        }
+
+        return $response;
+
+    }
+
+    /**
      * @Post("/api/users/register")
      */
     public function registerAction() {

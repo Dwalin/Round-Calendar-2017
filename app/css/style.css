@@ -1456,3 +1456,43 @@ body * {
 .ui-datepicker-next {
   order: 3;
 }
+.cal-popup__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+}
+.cal-popup__box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  padding: 40px;
+  background-color: #fff;
+  min-width: 400px;
+}
+.cal-popup__title {
+  font-size: 160%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.cal-popup__title._sub {
+  font-size: 90%;
+  opacity: 0.5;
+}
+.cal-popup__form {
+  display: flex;
+  flex-direction: column;
+}
+.cal-popup__input {
+  height: 50px;
+  line-height: 50px;
+  padding-left: 5px;
+  margin-bottom: 20px;
+}
+.js-hidden {
+  display: none;
+}
