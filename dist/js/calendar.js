@@ -283,6 +283,9 @@ $(function() {
 	ko.bindingHandlers.note = {
 		init: function(element, valueAccessor) {
 			$(document).on("click", ".mj-calendar__circle", function(){
+
+				console.log("Note adding popup.");
+
 				$(".js-popup__note").removeClass("js-hidden");
 				$(element).val( $(this).parent().attr("data-note") );
 			});
