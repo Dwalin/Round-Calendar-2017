@@ -319,7 +319,7 @@ $(function() {
 	ko.bindingHandlers.counterAutocomplete = {
 		init: function(element, valueAccessor, allBindings) {
 
-			var source = allBindings.get('counterData') || ["Weight", "KM", "Working hours"];
+			var source = ["Weight", "KM", "Working hours"];
 
 			$(element).autocomplete({
 				source: source
