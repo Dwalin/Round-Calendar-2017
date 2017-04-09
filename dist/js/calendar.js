@@ -67,7 +67,7 @@ $(function() {
 			counter[counterName] =  self.counterForm.value;
 
 			var data = {
-				counter: counter,
+				counter: JSON.stringify(counter),
 				day: day
 			};
 
