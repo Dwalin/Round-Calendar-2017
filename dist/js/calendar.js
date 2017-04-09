@@ -192,6 +192,8 @@ $(function() {
 
 					if (counters) {
 						counters.forEach(function() {
+							console.log(this);
+
 							self.counters.push(JSON.parse(this));
 						});
 					}
