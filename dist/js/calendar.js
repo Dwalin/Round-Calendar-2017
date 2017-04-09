@@ -39,8 +39,54 @@ $(function() {
 			day: ko.observable("")
 		};
 
+		self.counterForm = {
+			name: ko.observable(""),
+			value: ko.observable("")
+		};
+
+		self.counters = ko.observableArray();
+
 		self.updateDate = function(num) {
 
+		};
+
+		self.addCounter = function() {
+
+			self.noteForm.day($(".hasDatepicker").val());
+
+			var dateNow = self.noteForm.day().split('.');
+
+			var now = new Date(dateNow[2], dateNow[1]-1, dateNow[0]-1);
+			var start = new Date(2017, 0, 0);
+			var diff = now - start;
+			var oneDay = 1000 * 60 * 60 * 24;
+			var day = Math.ceil(diff / oneDay);
+
+			var counterName = self.counterForm.name;
+			var counter = {};
+			counter[counterName] =  self.counterForm.value;
+
+			var data = {
+				counter: counter,
+				day: day
+			};
+
+
+			$.ajax({
+				type: "POST",
+				url: "http://2017.fyi/api/calendar/counter/",
+				data: data,
+				dataType: "JSON",
+				success: function(data) {
+
+					$(".js-input").val('');
+					self.renderNotes();
+				},
+				error: function(data) {
+					console.log(data.responseText);
+				}
+
+			});
 		};
 
 		self.addNote = function() {
@@ -111,12 +157,10 @@ $(function() {
 			self.showLogin(!self.showLogin());
 			self.showRegister(!self.showRegister());
 		};
-
 		self.validate = function(email) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(email);
 		};
-
 		self.refresh = function() {
 
 			$.ajax({
@@ -124,10 +168,8 @@ $(function() {
 				data: "",
 				url: "http://2017.fyi/api/users/current",
 				success: function(data) {
-					//console.log("Refresh: Logged in.");
 					self.loggedIn(true);
 					self.renderNotes();
-					//self.users(data.data);
 				},
 				error: function(data) {
 					console.log("Refresh: Not logged in.");
@@ -136,7 +178,6 @@ $(function() {
 			});
 
 		};
-
 		self.renderNotes = function() {
 
 			$.ajax({
@@ -145,6 +186,14 @@ $(function() {
 				url: "http://2017.fyi/api/calendar/",
 				success: function(data) {
 					renderNotes(graph, data.notes);
+
+					var counters = data.counters;
+
+					if (counters) {
+						counters.each(function() {
+							self.counters.push(this);
+						});
+					}
 				},
 				error: function(data) {
 					console.log("data");
@@ -229,8 +278,6 @@ $(function() {
 			}
 
 		};
-
-
 		self.logOut = function() {
 			$.ajax({
 				type: "GET",

@@ -21,7 +21,6 @@
 		<div class="cal-popup__title">Save a memory</div>
 		<div class="cal-popup__title _sub">The note you write will be saved on your calendar.</div>
 
-
 		<form class="cal-popup__form">
 
 			<input class="cal-popup__input js-input" data-bind="value: noteForm.note, note" placeholder="What happened?">
@@ -30,6 +29,20 @@
 
 			<button data-bind="click: addNote" class="cal-popup__button mj-button js-close">
 				Save it!
+			</button>
+
+		</form>
+
+		<div class="cal-popup__title">Add a counter</div>
+		<div class="cal-popup__title _sub">Save numeric data on calendar and we'll make nice graphs %)</div>
+
+		<form class="cal-popup__form">
+
+			<input class="cal-popup__input js-input" data-bind="value: counterForm.name" placeholder="Name your counter">
+			<input class="cal-popup__input js-input" data-bind="value: counterForm.value" placeholder="Kilometers, minutes, kcal etc.">
+
+			<button data-bind="click: addCounter" class="cal-popup__button mj-button js-close">
+				Gogo!
 			</button>
 
 		</form>

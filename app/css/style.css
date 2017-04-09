@@ -1494,6 +1494,7 @@ body * {
 .cal-popup__form {
   display: flex;
   flex-direction: column;
+  margin-bottom: 40px;
 }
 .cal-popup__input {
   height: 50px;

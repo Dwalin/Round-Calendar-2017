@@ -150,9 +150,11 @@ class IndexController extends RestController {
         }
 
         $processedNotes = array();
+        $counters = array();
 
         foreach ($notes as $note) {
             $processedNotes[] = $note;
+            $counters[] = array($note["day"], $note["counter"]);
         }
 
 
@@ -160,6 +162,7 @@ class IndexController extends RestController {
         $this->response->setJsonContent(
             array(
                 'notes'   => $processedNotes,
+                'counters'   => $processedNotes,
                 'calendar' => $calendar->toArray()
             )
 
@@ -218,9 +221,7 @@ class IndexController extends RestController {
 
 
         if ($note) {
-            $note -> day           = $this->request->getPost('day');
             $note -> note          = $this->request->getPost('note');
-            $note -> calendar_id   = $calendar->toArray()[0]["id"];
         } else {
             $note = new Notes();
             $note -> day           = $this->request->getPost('day');
@@ -278,9 +279,7 @@ class IndexController extends RestController {
         ]);
 
         if ($note) {
-            $note -> day           = $this->request->getPost('day');
             $note -> counter       = $this->request->getPost('counter');
-            $note -> calendar_id   = $calendar->toArray()[0]["id"];
         } else {
             $note = new Notes();
             $note -> day           = $this->request->getPost('day');
