@@ -194,7 +194,7 @@ $(function() {
 						counters.forEach(function(counter) {
 							console.log(counter);
 
-							self.counters.push(JSON.parse(counter));
+							self.counters.push(counter);
 						});
 					}
 
