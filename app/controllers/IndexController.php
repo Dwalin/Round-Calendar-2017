@@ -264,7 +264,7 @@ class IndexController extends RestController {
     /**
      * @Post("/api/calendar/counter/")
      */
-    public function noteCounter() {
+    public function noteCounterAction() {
 
         $response = new Response();
         $request = $this->request->getPost();
