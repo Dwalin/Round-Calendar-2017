@@ -3,7 +3,7 @@ var d3          = require('d3');
 
 module.exports = function (calendar, notes) {
 
-	console.log(notes);
+	//console.log(notes);
 
 	days = d3.selectAll(".mj-calendar__day");
 
