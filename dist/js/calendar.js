@@ -44,7 +44,7 @@ $(function() {
 			value: ko.observable("")
 		};
 
-		self.counters = ko.observableArray();
+		self.counters = array();
 
 		self.updateDate = function(num) {
 
