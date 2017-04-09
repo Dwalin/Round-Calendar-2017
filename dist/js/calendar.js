@@ -191,10 +191,10 @@ $(function() {
 					var counters = data.counters;
 
 					if (counters) {
-						counters.forEach(function() {
-							console.log(this);
+						counters.forEach(function(counter) {
+							console.log(counter);
 
-							self.counters.push(JSON.parse(this));
+							self.counters.push(JSON.parse(counter));
 						});
 					}
 
