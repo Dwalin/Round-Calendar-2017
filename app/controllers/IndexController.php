@@ -228,8 +228,6 @@ class IndexController extends RestController {
             $note -> calendar_id   = $calendar->toArray()[0]["id"];
         }
 
-        die($note);
-
         if ($note->save() == true) {
             $response->setStatusCode(201, "Success");
             $response->setJsonContent(
