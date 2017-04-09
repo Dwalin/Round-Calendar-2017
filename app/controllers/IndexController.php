@@ -162,7 +162,7 @@ class IndexController extends RestController {
         $this->response->setJsonContent(
             array(
                 'notes'   => $processedNotes,
-                'counters'   => $processedNotes,
+                'counters'   => $counters,
                 'calendar' => $calendar->toArray()
             )
 
