@@ -82,7 +82,7 @@ $(function() {
 					self.renderNotes();
 				},
 				error: function(data) {
-					console.log(data.responseText);
+					//console.log(data.responseText);
 				}
 
 			});
@@ -122,7 +122,7 @@ $(function() {
 					self.renderNotes();
 				},
 				error: function(data) {
-					console.log(data.responseText);
+					//console.log(data.responseText);
 				}
 
 			});
@@ -171,7 +171,7 @@ $(function() {
 					self.renderNotes();
 				},
 				error: function(data) {
-					console.log("Refresh: Not logged in.");
+					//console.log("Refresh: Not logged in.");
 					self.loggedIn(false);
 				}
 			});
@@ -190,16 +190,16 @@ $(function() {
 
 					if (counters) {
 						counters.forEach(function(counter) {
-							console.log(counter);
+							//console.log(counter);
 
 							self.counters.push(counter);
 						});
 					}
 
-					console.log(self.counters);
+					//console.log(self.counters);
 				},
 				error: function(data) {
-					console.log("data");
+					//console.log("data");
 				}
 			});
 
@@ -222,7 +222,7 @@ $(function() {
 
 				if (self.showRegister()) {
 
-					console.log("Registering");
+					//console.log("Registering");
 
 					$.ajax({
 						type: "POST",
@@ -230,7 +230,7 @@ $(function() {
 						data: data,
 						dataType: "JSON",
 						success: function(data) {
-							console.log("Successfull Registration");
+							//console.log("Successfull Registration");
 
 							$.ajax({
 								type: "POST",
@@ -238,27 +238,26 @@ $(function() {
 								data: login,
 								dataType: "JSON",
 								success: function(data) {
-									console.log("Logged in");
+									//console.log("Logged in");
 									self.loggedIn(true);
 									self.renderNotes();
 								},
 								error: function(data) {
-									console.log("Not logged in", data);
+									//console.log("Not logged in", data);
 								}
 
 							});
 						},
 						error: function(data) {
 							//console.log("Not So Successfull Registration");
-							console.log(data);
-
+							//console.log(data);
 						}
 
 					});
 
 				} else {
 
-					console.log("Logging in");
+					//console.log("Logging in");
 
 					$.ajax({
 						type: "POST",
@@ -287,11 +286,11 @@ $(function() {
 				url: "http://2017.fyi/api/users/logout",
 				dataType: "JSON",
 				success: function(data) {
-					console.log("succes");
+					//console.log("succes");
 					self.loggedIn(false);
 				},
 				error: function(data) {
-					console.log("ERROR");
+					//console.log("ERROR");
 				}
 
 			});
@@ -308,7 +307,7 @@ $(function() {
 		init: function(element, valueAccessor) {
 
 			$(".js-close").on("click", function(){
-				console.log("Hiding popup.");
+				//console.log("Hiding popup.");
 				$(element).addClass("js-hidden");
 			});
 		}
@@ -321,7 +320,7 @@ $(function() {
 
 			$(element).autocomplete({
 				source: source,
-				appendTo: $(element)
+				appendTo: ".js-counter__name"
 			});
 		}
 	};
@@ -346,7 +345,7 @@ $(function() {
 		init: function(element, valueAccessor) {
 			$(document).on("click", ".mj-calendar__circle", function(){
 
-				console.log("Note adding popup.");
+				//console.log("Note adding popup.");
 
 				$(".js-popup__note").removeClass("js-hidden");
 				$(element).val( $(this).parent().attr("data-note") );
