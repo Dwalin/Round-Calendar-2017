@@ -46,12 +46,6 @@ gulp.task('compile-styl', function(){
 gulp.task('compile-js', function(){
 	return gulp.src('./dist/js/*.js')
 		.pipe(gulpBrowser.browserify())
-		.pipe(minify({
-			minify: true,
-			minifyJS: true,
-			uglifyJS: true,
-			collapseWhitespace: true
-		}))
 		.pipe(gulp.dest('./app/frontend/js/'));
 });
 
