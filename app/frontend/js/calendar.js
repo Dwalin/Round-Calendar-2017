@@ -466,7 +466,38 @@ module.exports = function (calendar, notes) {
 
 		note.text(noteData.note);
 
-		console.log(noteData)
+		if (noteData.counter != undefined) {
+			var note = day.append("g")
+				.append("text")
+				.attr("x", function() {
+					if (noteData.day < 182) {
+						return 10;
+					} else {
+						return -10;
+					}
+				})
+				.attr("text-anchor",
+				function() {
+					if (noteData.day < 182) {
+						return 'end';
+					} else {
+						return 'start';
+					}
+				})
+				.attr('transform',
+				function() {
+					if (noteData.day < 182) {
+						return 'rotate(' + ( (noteData.day) * (0.9863) + 270) + ', 0, 0)';
+					} else {
+						return 'rotate(' + ( (noteData.day) * (0.9863) + 90) + ', 0, 0)';
+					}
+				})
+				.classed('mj-calendar__note', true);
+
+			note.text(noteData.note);
+		}
+
+		console.log(noteData);
 
 	});
 
