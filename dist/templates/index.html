@@ -56,33 +56,35 @@
 
 <!-- ko ifnot: loggedIn -->
 
-<div class="mj-login__overlay">
+<div class="cal-popup__overlay">
+	<div class="cal-popup__black"></div>
 
-	<div class="mj-login__box">
+	<div class="cal-popup__box _login">
 
 		<div class="mj-login__logo"></div>
-		<h1 class="mj-login__header">2017 Round&nbsp;Calendar</h1>
-		<p class="mj-login__description">
+
+		<h1 class="cal-popup__title">2017 Round&nbsp;Calendar</h1>
+
+		<p class="cal-popup__title _sub">
 			The best way to keep your life chronicle now comes to web! Meet the Round Calendar by Mjolnir.
 		</p>
 
-		<form data-bind="submit: login" class="mj-login__form">
-			<input class="mj-input" data-bind="value: loginForm.login, css: validation" placeholder="email">
-			<input class="mj-input" type="password" data-bind="value: loginForm.password" placeholder="password">
+		<form class="cal-popup__form" data-bind="submit: login" class="mj-login__form">
+			<input class="cal-popup__input" data-bind="value: loginForm.login, css: validation" placeholder="email">
+			<input class="cal-popup__input" type="password" data-bind="value: loginForm.password" placeholder="password">
+
+			<button data-bind="click: login, css: validation" class="mj-login__button mj-button">
+				<!-- ko if: showRegister -->
+				Create free account
+				<!-- /ko -->
+
+				<!-- ko if: showLogin -->
+				Log in
+				<!-- /ko -->
+
+			</button>
+
 		</form>
-
-
-
-		<button data-bind="click: login, css: validation" class="mj-login__button mj-button">
-			<!-- ko if: showRegister -->
-			Create free account
-			<!-- /ko -->
-
-			<!-- ko if: showLogin -->
-			Log in
-			<!-- /ko -->
-		</button>
-
 
 		<div class="mj-login__additional">
 

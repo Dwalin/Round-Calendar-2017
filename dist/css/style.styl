@@ -10,7 +10,8 @@ body {
   line-height: 20px;
 }
 
-$c-main = rgba(0, 70, 140, 1);
+$c-main = rgba(80, 200, 240, 1);
+$c-text = rgba(80, 80, 80, 1);
 
 strokeC(degr)
   stroke: alpha(hue(hsl(90deg, 75%, 50%), degr * 360 / 400), .75);
@@ -223,6 +224,8 @@ body * {
 
 .cal-popup {
 
+
+
   &__overlay {
     position: absolute;
     top: 0;
@@ -230,6 +233,10 @@ body * {
     z-index: 1000;
     width: 100%;
     height: 100%;
+
+    .mj-link {
+      font-size: 110%;
+    }
   }
 
   &__black {
@@ -253,6 +260,17 @@ body * {
     z-index: 1200;
 
     transition: all .25s ease-in-out;
+
+    border-radius: 2px;
+
+    &._login {
+      max-width: 400px;
+      min-width: 400px;
+
+      .cal-popup__input {
+        font-size: 120%;
+      }
+    }
   }
 
   &__title {
@@ -279,7 +297,21 @@ body * {
 
     margin-bottom: 20px;
 
-    border: 1px solid rgba(0, 0, 0, .05);
+    border: none;
+    border-bottom: 2px solid rgba(220, 220, 220, 1);
+    /*background-color: rgba(0, 0, 0, .1);*/
+
+    transition: all .15s ease-in-out;
+    border-radius: 0;
+
+    outline: 2px solid transparent;
+
+    &:focus {
+      background-color: rgba(0, 0, 0, .05);
+      border-bottom: 2px solid $c-main;
+      /*outline: 2px solid alpha($c-main, .25);*/
+    }
+
   }
 
   transition: visibility 0s, opacity .25s ease-in-out;
@@ -292,7 +324,7 @@ body * {
   opacity: 0;
 
   .cal-popup__box {
-    transform: translateX(-50%) translateY(-40%);
+    transform: translateX(-50%) translateY(-45%);
     opacity: 0;
   }
 }

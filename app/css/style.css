@@ -29,7 +29,7 @@ body * {
   font-family: 'Bad Script', cursive;
 }
 .mj-calendar__note {
-  fill: #000;
+  fill: #09526b;
   font-size: 4px;
   font-family: 'Bad Script', cursive;
 }
@@ -1251,7 +1251,7 @@ body * {
   display: block;
 }
 .mj-calendar__line {
-  stroke: rgba(0,70,140,0.1);
+  stroke: rgba(80,200,240,0.1);
   stroke-width: 0.25;
   fill: none;
 }
@@ -1265,15 +1265,15 @@ body * {
   cursor: pointer;
   transition: 0.5s all ease-in-out;
   fill: #fff;
-  stroke: rgba(0,70,140,0.25);
+  stroke: rgba(80,200,240,0.25);
   stroke-width: 0.25;
 }
 .mj-calendar__circle._weekend {
-  stroke: rgba(0,70,140,0.25);
+  stroke: rgba(80,200,240,0.25);
   stroke-width: 0.5;
 }
 .mj-calendar__circle:hover {
-  stroke: rgba(0,70,140,0);
+  stroke: rgba(80,200,240,0);
   stroke-width: 1;
 /*fill: lighten($c-main, 20);*/
 }
@@ -1351,28 +1351,29 @@ body * {
   line-height: 50px;
   color: #fff;
   font-size: 120%;
-  border: none;
-  border-radius: 2px;
-  background-color: #00468c;
+/*border: none;*/
+  border-radius: 4px;
+  background-color: #50c8f0;
   transition: 0.15s all ease-in-out;
   cursor: pointer;
+  border: 1px solid #67cff2;
 }
 .mj-button:hover {
-  background-color: #0053a6;
+  background-color: #67cff2;
 }
 .mj-button._error {
-  background-color: #dfdfdf;
+  background-color: #fff;
   cursor: default;
 }
 .mj-link {
   text-decoration: none;
-  color: #00468c;
+  color: #505050;
   padding-bottom: 4px;
-  border-bottom: 1px solid rgba(0,70,140,0.15);
+  border-bottom: 1px solid rgba(80,200,240,0.15);
   transition: 0.15s all ease-in-out;
 }
 .mj-link:hover {
-  border-bottom: 1px solid rgba(0,70,140,0.5);
+  border-bottom: 1px solid rgba(80,200,240,0.5);
 }
 .mj-logout {
   padding: 20px;
@@ -1420,7 +1421,7 @@ body * {
   padding: 10px 20px;
   display: flex;
   background: none !important;
-  color: #00468c;
+  color: #50c8f0;
   border: none !important;
 }
 .ui-datepicker-calendar thead th {
@@ -1434,7 +1435,7 @@ body * {
   display: block;
   text-align: center;
   text-decoration: none;
-  color: #00468c;
+  color: #50c8f0;
   font-family: 'Roboto', serif;
   border: none !important;
   background: none !important;
@@ -1443,8 +1444,8 @@ body * {
   padding: 10px;
 }
 .ui-state-hover {
-  background: rgba(0,70,140,0.15) !important;
-  color: #00468c !important;
+  background: rgba(80,200,240,0.15) !important;
+  color: #50c8f0 !important;
 }
 .ui-datepicker-prev {
   order: 1;
@@ -1467,6 +1468,9 @@ body * {
   width: 100%;
   height: 100%;
 }
+.cal-popup__overlay .mj-link {
+  font-size: 110%;
+}
 .cal-popup__black {
   top: 0;
   left: 0;
@@ -1485,6 +1489,14 @@ body * {
   min-width: 400px;
   z-index: 1200;
   transition: all 0.25s ease-in-out;
+  border-radius: 2px;
+}
+.cal-popup__box._login {
+  max-width: 400px;
+  min-width: 400px;
+}
+.cal-popup__box._login .cal-popup__input {
+  font-size: 120%;
 }
 .cal-popup__title {
   font-size: 160%;
@@ -1505,13 +1517,23 @@ body * {
   line-height: 50px;
   padding-left: 10px;
   margin-bottom: 20px;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: none;
+  border-bottom: 2px solid #dcdcdc;
+/*background-color: rgba(0, 0, 0, .1);*/
+  transition: all 0.15s ease-in-out;
+  border-radius: 0;
+  outline: 2px solid transparent;
+}
+.cal-popup__input:focus {
+  background-color: rgba(0,0,0,0.05);
+  border-bottom: 2px solid #50c8f0;
+/*outline: 2px solid alpha($c-main, .25);*/
 }
 .js-hidden {
   visibility: hidden;
   opacity: 0;
 }
 .js-hidden .cal-popup__box {
-  transform: translateX(-50%) translateY(-40%);
+  transform: translateX(-50%) translateY(-45%);
   opacity: 0;
 }
