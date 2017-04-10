@@ -49,6 +49,7 @@ gulp.task('compile-js', function(){
 		.pipe(minify({
 			minify: true,
 			minifyJS: true,
+			uglifyJS: true,
 			collapseWhitespace: true
 		}))
 		.pipe(gulp.dest('./app/js/'));
