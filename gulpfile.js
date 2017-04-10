@@ -58,7 +58,7 @@ gulp.task('compile-js', function(){
 gulp.task('compile-html', function(){
 	return gulp.src('./dist/templates/index.html')
 		.pipe(nunjucks.compile())
-		.pipe(gulp.dest('./app/frontend/html/'));
+		.pipe(gulp.dest('./'));
 });
 
 gulp.task('minify', function(){
