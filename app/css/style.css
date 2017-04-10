@@ -1456,6 +1456,9 @@ body * {
 .ui-datepicker-next {
   order: 3;
 }
+.cal-popup {
+  transition: visibility 0s, opacity 0.25s ease-in-out;
+}
 .cal-popup__overlay {
   position: absolute;
   top: 0;
@@ -1481,6 +1484,7 @@ body * {
   background-color: #fff;
   min-width: 400px;
   z-index: 1200;
+  transition: all 0.25s ease-in-out;
 }
 .cal-popup__title {
   font-size: 160%;
@@ -1499,10 +1503,15 @@ body * {
 .cal-popup__input {
   height: 50px;
   line-height: 50px;
-  padding-left: 5px;
+  padding-left: 10px;
   margin-bottom: 20px;
   border: 1px solid rgba(0,0,0,0.05);
 }
 .js-hidden {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+.js-hidden .cal-popup__box {
+  transform: translateY(-40%);
+  opacity: 0;
 }
