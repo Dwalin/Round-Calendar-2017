@@ -14,12 +14,12 @@
 <link href="https://fonts.googleapis.com/css?family=Bad+Script|Merriweather:200,400,700&amp;subset=cyrillic" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
+<link rel="stylesheet" href="./app/frontend/js/ui/jquery-ui.min.css">
+<link rel="stylesheet" href="./app/frontend/js/ui/jquery-ui.theme.min.css">
 
 <link rel="stylesheet" href="./app/frontend/css/style.css">
 
-<link rel="stylesheet" href="./app/frontend/js/ui/jquery-ui.min.css">
-<link rel="stylesheet" href="./app/frontend/js/ui/jquery-ui.theme.min.css">
-<!--<script src="./app/js/ui/jquery-ui.min.js"></script>-->
+
 
 <script src="./app/frontend/js/calendar.js"></script></head>
 
@@ -30,7 +30,14 @@
 	<a class="mj-link" data-bind="click: logOut" href="#">Log out</a>
 </div>
 
-<div class="cal-popup__overlay js-popup js-popup__note js-hidden" data-bind="popup">
+
+
+
+<!-- /ko -->
+
+<!-- ko ifnot: loggedIn -->
+
+<div class="cal-popup__overlay js-popup js-popup__note" data-bind="popup">
 
 	<div class="cal-popup__black js-close"></div>
 
@@ -59,12 +66,11 @@
 
 		<form class="cal-popup__form">
 
-
-			<div>
-				<input class="cal-popup__input js-input js-counter__name" data-bind="value: counterForm.name, counterAutocomplete, counterData: counters" placeholder="Name your counter">
+			<div class="cal-popup__inputWrap ui-front">
+				<input class="cal-popup__input js-input js-counter__name"  data-bind="value: counterForm.name, counterAutocomplete, counterData: counters" placeholder="Name your counter">
 			</div>
 
-			<input class="cal-popup__input js-input" data-bind="value: counterForm.value" placeholder="Kilometers, minutes, kcal etc.">
+			<input class="cal-popup__input js-input"  data-bind="value: counterForm.value" placeholder="Kilometers, minutes, kcal etc.">
 
 			<button data-bind="click: addCounter" class="cal-popup__button mj-button js-close">
 				Gogo!
@@ -76,12 +82,7 @@
 
 </div>
 
-
-<!-- /ko -->
-
-<!-- ko ifnot: loggedIn -->
-
-<div class="cal-popup__overlay">
+<div class="cal-popup__overlay" style="display: none;">
 	<div class="cal-popup__black"></div>
 
 	<div class="cal-popup__box _login">

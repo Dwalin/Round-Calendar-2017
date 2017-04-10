@@ -306,6 +306,14 @@ body * {
 
     outline: 2px solid transparent;
 
+    &Wrap {
+      position: relative;
+
+      input {
+        width: 100%;
+      }
+    }
+
     &:focus {
       background-color: rgba(0, 0, 0, .05);
       border-bottom: 2px solid $c-main;
@@ -340,5 +348,39 @@ body * {
   .cal-popup__box {
     transform: translateX(-50%) translateY(-45%);
     opacity: 0;
+  }
+}
+
+.ui-autocomplete {
+  position: absolute;
+  z-index: 1000;
+  top: 50px;
+
+  border-radius: 0;
+  background-image: none;
+  border: none !important;
+  outline: none;
+
+  background-color: white;
+
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, .25);
+
+  .ui-menu-item {
+    height: 40px;
+    line-height: 40px;
+
+    a {
+      display: block;
+      padding-left: 10px;
+
+      &.ui-state-focus {
+        background-image: none;
+        background: $c-main;
+        border: none;
+        border-radius: 0;
+        color: white;
+        font-weight: 400;
+      }
+    }
   }
 }

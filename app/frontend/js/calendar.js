@@ -317,10 +317,11 @@ $(function() {
 	ko.bindingHandlers.counterAutocomplete = {
 		init: function(element, valueAccessor, allBindings) {
 
-			var counters = ["Weight", "KM", "Working hours", "Active time"];
+			var counters = ["Weight", "KM", "Working hours", "Active time" ];
 
 			$(element).autocomplete({
-				source: counters
+				source: counters,
+				position: { my : "left top", at: "left bottom" }
 			});
 
 		}
@@ -335,9 +336,7 @@ $(function() {
 			});
 
 			$(document).on("click", ".mj-calendar__circle", function(){
-
 				$(element).val( +$(this).attr("data-day") + 1 + "." + (+$(this).attr("data-month") + 1) + ".2017");
-
 			});
 		}
 	};

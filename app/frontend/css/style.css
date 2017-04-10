@@ -1524,6 +1524,12 @@ body * {
   border-radius: 0;
   outline: 2px solid transparent;
 }
+.cal-popup__inputWrap {
+  position: relative;
+}
+.cal-popup__inputWrap input {
+  width: 100%;
+}
 .cal-popup__input:focus {
   background-color: rgba(0,0,0,0.05);
   border-bottom: 2px solid #50c8f0;
@@ -1547,4 +1553,31 @@ body * {
 .js-hidden .cal-popup__box {
   transform: translateX(-50%) translateY(-45%);
   opacity: 0;
+}
+.ui-autocomplete {
+  position: absolute;
+  z-index: 1000;
+  top: 50px;
+  border-radius: 0;
+  background-image: none;
+  border: none !important;
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.25);
+}
+.ui-autocomplete .ui-menu-item {
+  height: 40px;
+  line-height: 40px;
+}
+.ui-autocomplete .ui-menu-item a {
+  display: block;
+  padding-left: 10px;
+}
+.ui-autocomplete .ui-menu-item a.ui-state-focus {
+  background-image: none;
+  background: #50c8f0;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  font-weight: 400;
 }
