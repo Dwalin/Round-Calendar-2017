@@ -1501,6 +1501,7 @@ body * {
   line-height: 50px;
   padding-left: 5px;
   margin-bottom: 20px;
+  border: 1px solid rgba(0,0,0,0.05);
 }
 .js-hidden {
   display: none;
