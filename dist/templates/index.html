@@ -12,11 +12,6 @@
 
 
 
-
-<!-- /ko -->
-
-<!-- ko ifnot: loggedIn -->
-
 <div class="cal-popup__overlay js-popup js-popup__note" data-bind="popup">
 
 	<div class="cal-popup__black js-close"></div>
@@ -62,7 +57,12 @@
 
 </div>
 
-<div class="cal-popup__overlay" style="display: none;">
+
+<!-- /ko -->
+
+<!-- ko ifnot: loggedIn -->
+
+<div class="cal-popup__overlay">
 	<div class="cal-popup__black"></div>
 
 	<div class="cal-popup__box _login">
