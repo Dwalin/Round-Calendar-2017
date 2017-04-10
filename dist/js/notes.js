@@ -47,8 +47,8 @@ module.exports = function (calendar, notes) {
 		if (noteData.counter != undefined) {
 			var note = day.append("g")
 				.append("circle")
-				.attr("r", "10")
-				.attr("x", "-50")
+				.attr("r", "4")
+				.attr("cx", "-50")
 				.attr('transform',
 				function() {
 					if (noteData.day < 182) {
@@ -57,12 +57,13 @@ module.exports = function (calendar, notes) {
 						return 'rotate(' + ( (noteData.day) * (0.9863) + 90) + ', 0, 0)';
 					}
 				})
-				.classed('mj-calendar__note', true);
+				.attr("data-value", "100")
+				.classed('mj-calendar__counter', true);
 
 			note.text(noteData.note);
 		}
 
-		console.log(noteData);
+		//console.log(noteData);
 
 	});
 
