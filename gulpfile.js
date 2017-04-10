@@ -39,7 +39,7 @@ gulp.task('default', function() {
 gulp.task('compile-styl', function(){
 	return gulp.src('./dist/css/style.styl')
 		.pipe(stylus())
-		.pipe(gulp.dest('./app/css/'))
+		.pipe(gulp.dest('./app/frontend/css/'))
 		.pipe(browserSync.stream());
 });
 
@@ -52,11 +52,24 @@ gulp.task('compile-js', function(){
 			uglifyJS: true,
 			collapseWhitespace: true
 		}))
-		.pipe(gulp.dest('./app/js/'));
+		.pipe(gulp.dest('./app/frontend/js/'));
 });
 
 gulp.task('compile-html', function(){
 	return gulp.src('./dist/templates/index.html')
 		.pipe(nunjucks.compile())
-		.pipe(gulp.dest('./'));
+		.pipe(gulp.dest('./app/frontend/html/'));
+});
+
+gulp.task('minify', function(){
+	return gulp.src('./app/frontend/**/*')
+		.pipe(minify({
+			minify: true,
+			minifyJS: true,
+			uglifyJS: true,
+			uglifyCSS: true,
+			minifyCSS: true,
+			minifyHTML: true,
+			collapseWhitespace: true
+		})).pipe(gulp.dest('./mini'));
 });
