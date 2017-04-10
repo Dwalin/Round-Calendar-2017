@@ -317,10 +317,10 @@ $(function() {
 	ko.bindingHandlers.counterAutocomplete = {
 		init: function(element, valueAccessor, allBindings) {
 
-			var source = ["Weight", "KM", "Working hours"];
+			var counters = ["Weight", "KM", "Working hours"];
 
 			$(element).autocomplete({
-				source: source
+				source: counters
 			});
 
 		}
