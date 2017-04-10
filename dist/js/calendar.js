@@ -321,6 +321,7 @@ $(function() {
 			$(element).autocomplete({
 				source: source
 			});
+
 		}
 	};
 
