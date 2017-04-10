@@ -468,22 +468,9 @@ module.exports = function (calendar, notes) {
 
 		if (noteData.counter != undefined) {
 			var note = day.append("g")
-				.append("text")
-				.attr("x", function() {
-					if (noteData.day < 182) {
-						return 10;
-					} else {
-						return -10;
-					}
-				})
-				.attr("text-anchor",
-				function() {
-					if (noteData.day < 182) {
-						return 'end';
-					} else {
-						return 'start';
-					}
-				})
+				.append("circle")
+				.attr("r", "10")
+				.attr("x", "-50")
 				.attr('transform',
 				function() {
 					if (noteData.day < 182) {
