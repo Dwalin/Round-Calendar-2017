@@ -4,6 +4,7 @@ var ui          = require('jquery-ui-browserify');
 var d3          = require('d3');
 var ko          = require('knockout');
 
+
 var renderCalendar = require('./render.js');
 var renderNotes = require('./notes.js');
 
@@ -322,7 +323,8 @@ $(function() {
 			var source = ["Weight", "KM", "Working hours"];
 
 			$(element).autocomplete({
-				source: source
+				source: source,
+				appendTo: "element"
 			});
 		}
 	};

@@ -6,6 +6,8 @@ var stylus = require('gulp-stylus');
 var gulpBrowser = require("gulp-browser");
 var nunjucks = require('gulp-nunjucks');
 
+var minify      = require('gulp-minifier');
+
 var browserSync = require('browser-sync').create();
 
 gulp.task('default', function() {
@@ -44,6 +46,11 @@ gulp.task('compile-styl', function(){
 gulp.task('compile-js', function(){
 	return gulp.src('./dist/js/*.js')
 		.pipe(gulpBrowser.browserify())
+		.pipe(minify({
+			minify: true,
+			minifyJS: true,
+			collapseWhitespace: true
+		}))
 		.pipe(gulp.dest('./app/js/'));
 });
 

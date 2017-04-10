@@ -16,6 +16,7 @@
     "gulp-browser": "^3.0.2",
     "gulp-browserify": "^0.5.1",
     "gulp-data": "^1.2.1",
+    "gulp-minifier": "^0.2.2",
     "gulp-nunjucks": "^2.3.0",
     "gulp-stylus": "^2.6.0",
     "gulp-watch": "^4.3.11",
