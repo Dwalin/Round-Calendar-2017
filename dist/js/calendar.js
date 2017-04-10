@@ -319,8 +319,7 @@ $(function() {
 			var source = ["Weight", "KM", "Working hours"];
 
 			$(element).autocomplete({
-				source: source,
-				appendTo: ".js-counter__name"
+				source: source
 			});
 		}
 	};
