@@ -466,6 +466,8 @@ module.exports = function (calendar, notes) {
 
 		note.text(noteData.note);
 
+		console.log(noteData)
+
 	});
 
 };
