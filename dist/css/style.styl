@@ -249,10 +249,10 @@ body * {
     padding: 40px;
 
     background-color: rgba(255, 255, 255, 1);
-
     min-width: 400px;
-
     z-index: 1200;
+
+    transition: all .25s ease-in-out;
   }
 
   &__title {
@@ -281,8 +281,18 @@ body * {
 
     border: 1px solid rgba(0, 0, 0, .05);
   }
+
+  transition: visibility 0s, opacity .25s ease-in-out;
+
+
 }
 
 .js-hidden {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+
+  .cal-popup__box {
+    transform: translateY(-40%);
+    opacity: 0;
+  }
 }
