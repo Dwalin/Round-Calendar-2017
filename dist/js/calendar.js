@@ -3,7 +3,7 @@ var ui          = require('jquery-ui-browserify');
 var d3          = require('d3');
 var ko          = require('knockout');
 
-var renderCalendar = require('./render.js');
+//var renderCalendar = require('./render.js');
 var renderNotes = require('./notes.js');
 
 $(function() {
@@ -360,24 +360,24 @@ $(function() {
 	var calendarWrapper = d3.select(".mj-calendar");
 	var calendar = d3.select(".mj-calendar__svg");
 
-	var graph = calendar.append("g");
-
-	calendar.attr("height", "100%");
-	calendar.attr("width", "100%");
-	calendar.attr("viewBox", "0 0 1000 1000");
-	calendar.attr("preserveAspectRatio", "xMidYMid meet");
-
-	graph.append("text")
-		.text("2017 Round Calendar")
-		.attr("x", 500)
-		.attr("y", 500)
-		.attr("text-anchor", "middle");
-
-	//graph.transition()
-	//	.duration(1600)
-	//	.attr("transform",
-	//	"translate( -1500 -200 )"
-	//	+ " scale(4)");
+	var graph = calendar.select("g");
+	//
+	//calendar.attr("height", "100%");
+	//calendar.attr("width", "100%");
+	//calendar.attr("viewBox", "0 0 1000 1000");
+	//calendar.attr("preserveAspectRatio", "xMidYMid meet");
+	//
+	//graph.append("text")
+	//	.text("2017 Round Calendar")
+	//	.attr("x", 500)
+	//	.attr("y", 500)
+	//	.attr("text-anchor", "middle");
+	//
+	////graph.transition()
+	////	.duration(1600)
+	////	.attr("transform",
+	////	"translate( -1500 -200 )"
+	////	+ " scale(4)");
 
 	calendarWrapper.call(d3.zoom().on("zoom", function () {
 
@@ -411,7 +411,7 @@ $(function() {
 	//	{day: "0", note: "New Year!"}
 	//];
 
-	renderCalendar(graph);
+	//renderCalendar(graph);
 
 
 });
