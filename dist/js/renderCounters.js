@@ -37,6 +37,9 @@ module.exports = function (calendar, counters) {
 	var counterData = [];
 
 	for (var key in counters) {
+
+		console.log(counters[key]);
+
 		var day = counters[key].day;
 
 		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(day) )) )) / 10;
