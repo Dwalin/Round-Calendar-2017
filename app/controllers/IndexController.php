@@ -456,6 +456,7 @@ class IndexController extends RestController {
             ]);
         } else {
             // Or we need to create one
+            $counter = new Counters();
             $type = new Countertypes();
             $type -> name             = $this->request->getPost('name');
         }
@@ -465,7 +466,6 @@ class IndexController extends RestController {
             // Updating counter value...
             $counter -> value         = $this->request->getPost('value');
         } else {
-//            die(var_dump($request));
             // Or creating new one
             $counter = new Counters();
             $counter -> day           = $request['day'];
