@@ -475,9 +475,7 @@ class IndexController extends RestController {
         }
 
 
-        die(var_dump($counter));
-
-        if ($counter -> save() == true) {
+        if ($counter->save() == true) {
             die("lol1");
 
             $response->setStatusCode(201, "Success");
