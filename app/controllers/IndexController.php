@@ -444,6 +444,7 @@ class IndexController extends RestController {
         $type = Countertypes::findFirstByName($this->request->getPost('name'));
 
         if ($type) {
+            die("lol");
             // If such type exists...
             $counter = Counters::findFirst([
                 "type_id = :type_id: AND day = :day: AND calendar_id = :calendar_id:",
