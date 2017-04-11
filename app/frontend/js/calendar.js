@@ -4,7 +4,7 @@ var ui          = require('jquery-ui-browserify');
 var d3          = require('d3');
 var ko          = require('knockout');
 
-//var renderCalendar = require('./render.js');
+var renderCalendar = require('./render.js');
 var renderNotes = require('./notes.js');
 
 $(function() {
@@ -160,7 +160,7 @@ $(function() {
 		self.validate = function(email) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(email);
-		};
+		};gulp
 		self.refresh = function() {
 
 			$.ajax({
@@ -361,24 +361,24 @@ $(function() {
 	var calendarWrapper = d3.select(".mj-calendar");
 	var calendar = d3.select(".mj-calendar__svg");
 
-	var graph = calendar.select("g");
-	//
-	//calendar.attr("height", "100%");
-	//calendar.attr("width", "100%");
-	//calendar.attr("viewBox", "0 0 1000 1000");
-	//calendar.attr("preserveAspectRatio", "xMidYMid meet");
-	//
-	//graph.append("text")
-	//	.text("2017 Round Calendar")
-	//	.attr("x", 500)
-	//	.attr("y", 500)
-	//	.attr("text-anchor", "middle");
-	//
-	////graph.transition()
-	////	.duration(1600)
-	////	.attr("transform",
-	////	"translate( -1500 -200 )"
-	////	+ " scale(4)");
+	var graph = calendar.append("g");
+
+	calendar.attr("height", "100%");
+	calendar.attr("width", "100%");
+	calendar.attr("viewBox", "0 0 1000 1000");
+	calendar.attr("preserveAspectRatio", "xMidYMid meet");
+
+	graph.append("text")
+		.text("2017 Round Calendar")
+		.attr("x", 500)
+		.attr("y", 500)
+		.attr("text-anchor", "middle");
+
+	//graph.transition()
+	//	.duration(1600)
+	//	.attr("transform",
+	//	"translate( -1500 -200 )"
+	//	+ " scale(4)");
 
 	calendarWrapper.call(d3.zoom().on("zoom", function () {
 
@@ -412,14 +412,14 @@ $(function() {
 	//	{day: "0", note: "New Year!"}
 	//];
 
-	//renderCalendar(graph);
+	renderCalendar(graph);
 
 
 });
 
 
 
-},{"./notes.js":2,"d3":3,"jquery":6,"jquery-ui-browserify":5,"knockout":7}],2:[function(require,module,exports){
+},{"./notes.js":2,"./render.js":3,"d3":4,"jquery":7,"jquery-ui-browserify":6,"knockout":8}],2:[function(require,module,exports){
 var d3          = require('d3');
 
 module.exports = function (calendar, notes) {
@@ -498,7 +498,225 @@ module.exports = function (calendar, notes) {
 
 };
 
-},{"d3":3}],3:[function(require,module,exports){
+},{"d3":4}],3:[function(require,module,exports){
+var d3          = require('d3');
+
+module.exports = function (calendar) {
+
+	var month = function(name, days) {
+		var self = this;
+		self.name = name;
+		self.days = days;
+	};
+
+	var months = [];
+
+	months.push(new month("January", 31));
+	months.push(new month("February", 28));
+	months.push(new month("March", 31));
+	months.push(new month("April", 30));
+	months.push(new month("May", 31));
+	months.push(new month("June", 30));
+	months.push(new month("July", 31));
+	months.push(new month("August", 31));
+	months.push(new month("September", 30));
+	months.push(new month("October", 31));
+	months.push(new month("November", 30));
+	months.push(new month("December", 31));
+
+	var week = [
+		"Monday",
+		"Tuesday",
+		"Wednesday",
+		"Thursday",
+		"Friday",
+		"Saturday",
+		"Sunday"
+	];
+
+
+	var days = 365;
+	var angle = 2*Math.PI / days;
+
+	var center = {
+		x: 500,
+		y: 500
+	};
+
+	var radius = 320;
+
+	var lineData = [];
+	var lineData2 = [];
+
+	var normal = d3.scaleLinear()
+		.domain([0, days * 11.5])
+		.range([0, 12*Math.PI]);
+
+	var normal2 = d3.scaleLinear()
+		.domain([0, days])
+		.range([0, 24*2*Math.PI]);
+
+	var normalText = d3.scaleLinear()
+		.domain([0, days])
+		.range([0, 360]);
+
+	var j = 0;
+
+	var fullmoon = [
+
+	];
+
+	months.forEach(function(month, k, arr) {
+
+		normal = d3.scaleLinear()
+			.domain([0, month.days])
+			.range([0, Math.PI]);
+
+
+		for (i = 0; i < month.days; i++) {
+
+			var x = Math.round(10*(center.x + (radius  - 40 * (Math.cos(normal(i))*Math.cos(normal(i)) )) * Math.sin(angle * j)) ) / 10;
+			var y = Math.round(10*(center.y - (radius  - 40 * (Math.cos(normal(i))*Math.cos(normal(i)) )) * Math.cos(angle * j)) ) / 10;
+
+			lineData.push({
+				x: x,
+				y: y
+			});
+
+			j++;
+
+		}
+	});
+
+	j = 0;
+
+	var lineFunction = d3.line()
+		.x(function(d) { return d.x; })
+		.y(function(d) { return d.y; });
+	//.curve(d3.curveCatmullRom.alpha(0.15));
+
+
+	months.forEach(function(month, k, arr) {
+
+		normal = d3.scaleLinear()
+			.domain([0, month.days])
+			.range([0, Math.PI]);
+
+		calendar.append("circle")
+			.attr("cx", Math.round(10*(center.x + (radius - 40 * (Math.cos(normal(0)) )) * Math.sin(angle * j))) / 10)
+			.attr("cy", Math.round(10*(center.y - (radius - 40 * (Math.cos(normal(0)) )) * Math.cos(angle * j))) / 10)
+			.attr("r", 1)
+		;
+
+		for (i = 0; i < month.days; i++) {
+
+			var simplify3 = (Math.cos(normal(i))*Math.cos(normal(i)));
+
+			x = Math.round(10*(center.x + (radius - 40 * simplify3) * Math.sin(angle * j))) / 10;
+			y = Math.round(10*(center.y - (radius - 40 * simplify3) * Math.cos(angle * j))) / 10;
+
+			//  Days
+
+			var day = calendar.append("g")
+				.classed("mj-calendar__day", true);
+
+			day.append("circle")
+				.attr("r", 1.5)
+				.attr("data-month", k)
+				.attr("data-day", i)
+				.attr("data-bind", "click: updateDate(" + j + ")")
+				.classed("mj-calendar__circle", true)
+				.classed("_" + i, true)
+				.classed("_weekend", function(){
+
+					return ((j % 7 == 0) || (j % 7 == 6)) ? true : false;
+					return ((j % 7 == 0) || (j % 7 == 6)) ? true : false;
+				})
+				.attr("cx", x  )
+				.attr("cy", y  )
+			;
+
+
+			if (j < days/2) {
+				x = Math.round(10*(center.x + (radius - 40 * (Math.cos(normal(i)) * Math.cos(normal(i)) ) - 5) * Math.sin(angle * j + 0.002))) / 10;
+				y = Math.round(10*(center.y - (radius - 40 * (Math.cos(normal(i)) * Math.cos(normal(i)) ) - 5) * Math.cos(angle * j + 0.002))) / 10;
+			} else {
+				x = Math.round(10*(center.x + (radius - 40 * (Math.cos(normal(i)) * Math.cos(normal(i)) ) - 5) * Math.sin(angle * j - 0.002))) / 10;
+				y = Math.round(10*(center.y - (radius - 40 * (Math.cos(normal(i)) * Math.cos(normal(i)) ) - 5) * Math.cos(angle * j - 0.002))) / 10;
+			}
+
+			//  Days text
+
+			var textBox = day.append("svg")
+					.attr("x", x  )
+					.attr("y", y  )
+					.attr("viewbox", "0 0 100 100")
+					.attr("width", "100")
+					.attr("height", "100")
+
+					.classed("mj-calendar__dateWrap", true)
+				;
+
+			var date = new Date(2017, k, i);
+
+			var simplify1 = j*9.86;
+
+			textBox.append("text")
+				.text(
+				i+1 + ' ' + week[date.getDay()]
+			)
+				.attr("text-anchor",
+				function() {
+					if (j < days/2) {
+						return 'end';
+					} else {
+						return 'start';
+					}
+				}
+			)
+				.classed("mj-calendar__date", true)
+				.classed("mj-calendar__date__weekend", (date.getDay() > 4))
+				.attr('transform',
+				function() {
+					if (j < days/2) {
+						return 'rotate(' + Math.round( simplify1 + 2700 ) / 10 + ', 0, 0)';
+					} else {
+						return 'rotate(' + Math.round( simplify1 + 900 ) / 10 + ', 0, 0)';
+					}
+				}
+
+			);
+
+			j++;
+
+		}
+	});
+
+	for (i = 0; i < 12; i++) {
+
+		var month = calendar.append("g")
+			.classed("mj-calendar__month", true);
+
+		var simplify2 = angle * 30.4 * (i+0.5);
+
+		var x = center.x + radius * (Math.sin(simplify2)) * 0.74;
+		var y = center.y - radius * (Math.cos(simplify2)) * 0.74;
+
+		month.append("text")
+			.attr('x', x)
+			.attr('y', y)
+			.attr('transform', 'rotate(' + ( (i+0.5) * (30) ) + ', ' + x + ', ' + y + ')')
+			.attr("text-anchor", "middle")
+			.text(months[i].name);
+
+	}
+
+
+
+
+};
+
+},{"d3":4}],4:[function(require,module,exports){
 // https://d3js.org Version 4.7.3. Copyright 2017 Mike Bostock.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -17060,7 +17278,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /*! jQuery UI - v1.11.0pre - 2013-09-27
 * http://jqueryui.com
 * Includes: jquery.ui.core.js, jquery.ui.widget.js, jquery.ui.mouse.js, jquery.ui.draggable.js, jquery.ui.droppable.js, jquery.ui.resizable.js, jquery.ui.selectable.js, jquery.ui.sortable.js, jquery.ui.effect.js, jquery.ui.accordion.js, jquery.ui.autocomplete.js, jquery.ui.button.js, jquery.ui.datepicker.js, jquery.ui.dialog.js, jquery.ui.effect-blind.js, jquery.ui.effect-bounce.js, jquery.ui.effect-clip.js, jquery.ui.effect-drop.js, jquery.ui.effect-explode.js, jquery.ui.effect-fade.js, jquery.ui.effect-fold.js, jquery.ui.effect-highlight.js, jquery.ui.effect-puff.js, jquery.ui.effect-pulsate.js, jquery.ui.effect-scale.js, jquery.ui.effect-shake.js, jquery.ui.effect-size.js, jquery.ui.effect-slide.js, jquery.ui.effect-transfer.js, jquery.ui.menu.js, jquery.ui.position.js, jquery.ui.progressbar.js, jquery.ui.slider.js, jquery.ui.spinner.js, jquery.ui.tabs.js, jquery.ui.tooltip.js
@@ -32166,10 +32384,10 @@ $.widget( "ui.tooltip", {
 
 }( jQuery ) );*/
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 $ = jQuery = require('jquery');
 module.exports = require('./dist/jquery-ui.js');
-},{"./dist/jquery-ui.js":4,"jquery":6}],6:[function(require,module,exports){
+},{"./dist/jquery-ui.js":5,"jquery":7}],7:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
@@ -42424,7 +42642,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /*!
  * Knockout JavaScript library v3.4.2
  * (c) The Knockout.js team - http://knockoutjs.com/
