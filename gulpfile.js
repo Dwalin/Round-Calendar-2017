@@ -6,6 +6,8 @@ var stylus = require('gulp-stylus');
 var gulpBrowser = require("gulp-browser");
 var nunjucks = require('gulp-nunjucks');
 
+var minify      = require('gulp-minifier');
+
 var browserSync = require('browser-sync').create();
 
 gulp.task('default', function() {
@@ -37,18 +39,31 @@ gulp.task('default', function() {
 gulp.task('compile-styl', function(){
 	return gulp.src('./dist/css/style.styl')
 		.pipe(stylus())
-		.pipe(gulp.dest('./app/css/'))
+		.pipe(gulp.dest('./app/frontend/css/'))
 		.pipe(browserSync.stream());
 });
 
 gulp.task('compile-js', function(){
 	return gulp.src('./dist/js/*.js')
 		.pipe(gulpBrowser.browserify())
-		.pipe(gulp.dest('./app/js/'));
+		.pipe(gulp.dest('./app/frontend/js/'));
 });
 
 gulp.task('compile-html', function(){
 	return gulp.src('./dist/templates/index.html')
 		.pipe(nunjucks.compile())
 		.pipe(gulp.dest('./'));
+});
+
+gulp.task('minify', function(){
+	return gulp.src('./app/frontend/**/*')
+		.pipe(minify({
+			minify: true,
+			minifyJS: true,
+			uglifyJS: true,
+			uglifyCSS: true,
+			minifyCSS: true,
+			minifyHTML: true,
+			collapseWhitespace: true
+		})).pipe(gulp.dest('./mini'));
 });
