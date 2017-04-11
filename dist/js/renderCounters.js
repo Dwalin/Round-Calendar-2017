@@ -33,11 +33,27 @@ module.exports = function (calendar, counters) {
 		.domain([0, 365 / 2])
 		.range([0, Math.PI]);
 
+
+	var counterData = [];
+
+	for (var key in counters) {
+		var day = counters[key].day;
+
+		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(day) )) )) / 10;
+		var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(day) )) )) / 10;
+
+		calendar.append("circle")
+			.attr("cx", x)
+			.attr("cy", y)
+			.attr("r", 1)
+	}
+
 	for (var i = 0; i < days; i++) {
+
 		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(i) )) )) / 10;
 		var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(i) )) )) / 10;
 
-
+		if (ind)
 
 		lineData.push({
 			x: x,
