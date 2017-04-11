@@ -470,7 +470,7 @@ class IndexController extends RestController {
             $counter -> value         = $request['value'];
             $counter -> calendar_id   = $calendar->toArray()[0]["id"];
 
-            $counter -> type_id       = $type->toArray()["id"];
+            $counter -> type_id       = $type;
         }
 
 //        die(var_dump($counter->save() ));
