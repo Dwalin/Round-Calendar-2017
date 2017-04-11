@@ -61,8 +61,6 @@ module.exports = function (calendar, counters) {
 		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(i) )) )) / 10;
 		var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(i) )) )) / 10;
 
-		if (ind)
-
 		lineData.push({
 			x: x,
 			y: y
