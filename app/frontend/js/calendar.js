@@ -488,6 +488,7 @@ module.exports = function (calendar, notes) {
 					.attr("data-value-" + key, item)
 					.classed('mj-calendar__counter', true);
 
+
 			});
 		}
 
