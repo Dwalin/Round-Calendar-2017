@@ -48,6 +48,8 @@ module.exports = function (calendar, notes) {
 
 			var parsed = JSON.parse(noteData.counter);
 
+			console.log(parsed);
+
 			parsed.each(function(item){
 				var note = day.append("g")
 					.append("circle")
