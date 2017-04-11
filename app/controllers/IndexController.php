@@ -410,16 +410,14 @@ class IndexController extends RestController {
             $response->setJsonContent(
                 array(
                     'status'     => 'OK',
-                    'counters'   => $counters,
-                    'calendar'   => $calendar->toArray()
+                    'counters'   => $counters
                 )
             );
         } else {
             $response->setStatusCode(404, "Not found");
             $response->setJsonContent(
                 array(
-                    'status'     => 'Not found',
-                    'calendar'   => $calendar->toArray()
+                    'status'     => 'Not found'
                 )
             );
         }
@@ -441,7 +439,6 @@ class IndexController extends RestController {
         $user = Users::findFirst($userId);
 
         $calendar = $user->getCalendar();
-
 
 
         $type = Countertypes::findFirstByName($this->request->getPost('name'));
