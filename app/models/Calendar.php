@@ -34,6 +34,12 @@ class Calendar extends Model
             "calendar_id"
         );
 
+        $this->hasMany(
+            "id",
+            "Counters",
+            "calendar_id"
+        );
+
     }
 
 

@@ -374,4 +374,139 @@ class IndexController extends RestController {
         return $response;
 
     }
+
+
+
+    // Counters
+
+    /**
+     * @Get("/api/calendar/counters/")
+     */
+    public function countersGetAction() {
+
+        $response = new Response();
+
+        $userId = $this->session->get("user")['id'];
+        $user = Users::findFirst($userId);
+        $calendar = $user->getCalendar();
+
+        $counters = Counters::find([
+            "calendar_id = :calendar_id:",
+            "bind" => [
+                "calendar_id" => $calendar->toArray()[0]["id"]
+            ]
+        ]);
+
+        if ($counters) {
+            $response->setStatusCode(201, "Success");
+            $counters = $counters -> toArray();
+
+            foreach ($counters as $key => $counter) {
+                $type = Countertypes::findFirst($counter["type_id"]);
+                $counter["type"] = $type->toArray()[0]["name"];
+            }
+
+            $response->setJsonContent(
+                array(
+                    'status'     => 'OK',
+                    'counters'   => $counters,
+                    'calendar'   => $calendar->toArray()
+                )
+            );
+        } else {
+            $response->setStatusCode(404, "Not found");
+            $response->setJsonContent(
+                array(
+                    'status'     => 'Not found',
+                    'calendar'   => $calendar->toArray()
+                )
+            );
+        }
+
+
+        return $response;
+    }
+
+
+    /**
+     * @Post("/api/calendar/counters/")
+     */
+    public function countersAddAction() {
+
+        $response = new Response();
+        $request = $this->request->getPost();
+
+        $userId = $this->session->get("user")['id'];
+        $user = Users::findFirst($userId);
+
+        $calendar = $user->getCalendar();
+
+
+
+        $type = Countertypes::findFirstByName($this->request->getPost('name'));
+
+        if ($type) {
+            // If such type exists...
+            $counter = Counters::findFirst([
+                "type_id = :type_id: AND day = :day: AND calendar_id = :calendar_id:",
+                "bind" => [
+                    "type_id"     => $type->toArray()[0]["id"],
+                    "day"         => $this->request->getPost('day'),
+                    "calendar_id" => $calendar->toArray()[0]["id"]
+                ]
+
+            ]);
+        } else {
+            // Or we need to create one
+            $type = new Countertypes();
+            $type -> name             = $this->request->getPost('name');
+        }
+
+
+        if ($counter) {
+            // Updating counter value...
+            $counter -> value         = $this->request->getPost('value');
+        } else {
+            // Or creating new one
+            $counter = new Counters();
+            $counter -> day           = $this->request->getPost('day');
+            $counter -> value         = $this->request->getPost('value');
+            $counter -> calendar_id   = $calendar->toArray()[0]["id"];
+
+            $counter -> type_id       = $type;
+        }
+
+        if ($counter -> save() == true) {
+            $response->setStatusCode(201, "Success");
+            $response->setJsonContent(
+                array(
+                    'status' => 'OK',
+                    'action' => 'created',
+                    'data'   => $counter -> toArray()
+                )
+            );
+        } else {
+            // Change the HTTP status
+            $response->setStatusCode(409, "Conflict");
+
+            // Send errors to the client
+            $errors = array();
+            foreach ($counter->getMessages() as $message) {
+                $errors[] = $message->getMessage();
+            }
+
+            $response->setJsonContent(
+                array(
+                    'status'   => 'ERROR',
+                    'messages' => $errors,
+                    'calendar' => $counter->toArray()
+                )
+            );
+        }
+
+        return $response;
+
+    }
+
+
 }
