@@ -440,6 +440,8 @@ class IndexController extends RestController {
 
         $calendar = $user->getCalendar();
 
+        die($request);
+
 
         $type = Countertypes::findFirstByName($this->request->getPost('name'));
 
@@ -452,11 +454,9 @@ class IndexController extends RestController {
                     "day"         => $request['day'],
                     "calendar_id" => $calendar->toArray()[0]["id"]
                 ]
-
             ]);
         } else {
             // Or we need to create one
-            $counter = null;
             $type = new Countertypes();
             $type -> name             = $this->request->getPost('name');
         }
