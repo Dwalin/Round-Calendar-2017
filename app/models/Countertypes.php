@@ -4,7 +4,7 @@
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Message;
 
-class Counters extends Model
+class Countertypes extends Model
 {
     public  $id;
     public  $name;
