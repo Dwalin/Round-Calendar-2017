@@ -449,7 +449,7 @@ class IndexController extends RestController {
                 "type_id = :type_id: AND day = :day: AND calendar_id = :calendar_id:",
                 "bind" => [
                     "type_id"     => $type->toArray()[0]["id"],
-                    "day"         => $this->request->getPost('day'),
+                    "day"         => $request['day'],
                     "calendar_id" => $calendar->toArray()[0]["id"]
                 ]
 
@@ -467,8 +467,8 @@ class IndexController extends RestController {
         } else {
             // Or creating new one
             $counter = new Counters();
-            $counter -> day           = $this->request->getPost('day');
-            $counter -> value         = $this->request->getPost('value');
+            $counter -> day           = $request['day'];
+            $counter -> value         = $request['value'];
             $counter -> calendar_id   = $calendar->toArray()[0]["id"];
 
             $counter -> type_id       = $type;
