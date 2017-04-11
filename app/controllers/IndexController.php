@@ -473,7 +473,7 @@ class IndexController extends RestController {
             $counter -> type_id       = $type;
         }
 
-        die(var_dump($counter->save() ));
+        die(var_dump($counter->update() ));
 
         if ($counter->save() == true) {
 
