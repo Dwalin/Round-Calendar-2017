@@ -397,9 +397,10 @@ class IndexController extends RestController {
             ]
         ]);
 
+        $counters = $counters -> toArray();
+
         if ($counters) {
             $response->setStatusCode(201, "Success");
-            $counters = $counters -> toArray();
 
             foreach ($counters as $key => $counter) {
                 $type = Countertypes::findFirst($counter["type_id"]);
