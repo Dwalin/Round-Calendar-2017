@@ -474,8 +474,8 @@ class IndexController extends RestController {
             $counter -> type_id       = $type;
         }
 
-        die($counter -> save());
 
+        die(var_dump($counter));
 
         if ($counter -> save() == true) {
             die("lol1");
