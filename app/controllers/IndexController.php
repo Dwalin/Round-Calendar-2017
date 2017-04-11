@@ -462,9 +462,11 @@ class IndexController extends RestController {
 
 
         if ($counter) {
+            die("Lol");
             // Updating counter value...
             $counter -> value         = $this->request->getPost('value');
         } else {
+            die("Lol2");
             // Or creating new one
             $counter = new Counters();
             $counter -> day           = $request['day'];
