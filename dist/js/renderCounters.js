@@ -12,7 +12,7 @@ module.exports = function (calendar, counters) {
 		y: 500
 	};
 
-	var radius = 320;
+	var radius = 220;
 
 	var lineData = [];
 	var lineData2 = [];
@@ -52,6 +52,7 @@ module.exports = function (calendar, counters) {
 
 	calendar.append("path")
 		.attr("d", lineFunction(lineData))
+		.attr("fill", "transparent")
 		.classed("mj-counter__graph", true);
 
 
