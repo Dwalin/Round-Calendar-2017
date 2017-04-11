@@ -456,7 +456,7 @@ class IndexController extends RestController {
             ]);
         } else {
             // Or we need to create one
-            $counter = new Counters();
+            $counter = null;
             $type = new Countertypes();
             $type -> name             = $this->request->getPost('name');
         }
