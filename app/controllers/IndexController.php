@@ -499,7 +499,7 @@ class IndexController extends RestController {
                 array(
                     'status'   => 'ERROR',
                     'messages' => $errors,
-                    'calendar' => $counter->toArray()
+                    'calendar' => $calendar->toArray()
                 )
             );
         }
