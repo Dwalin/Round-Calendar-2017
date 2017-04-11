@@ -4,6 +4,7 @@ var d3          = require('d3');
 var ko          = require('knockout');
 
 var renderCalendar = require('./render.js');
+var renderCounters = require('./renderCounters.js');
 var renderNotes = require('./notes.js');
 
 $(function() {
@@ -412,6 +413,7 @@ $(function() {
 	//];
 
 	renderCalendar(graph);
+	renderCounters(graph);
 
 
 });
