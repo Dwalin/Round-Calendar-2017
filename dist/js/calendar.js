@@ -413,7 +413,25 @@ $(function() {
 	//];
 
 	renderCalendar(graph);
-	renderCounters(graph);
+
+
+	$.ajax({
+		type: "GET",
+		url: "http://2017.fyi/api/calendar/counters/",
+		data: data,
+		dataType: "JSON",
+		success: function(data) {
+
+
+			renderCounters(graph, data.counters);
+		},
+		error: function(data) {
+			//console.log(data.responseText);
+		}
+
+	});
+
+
 
 
 });

@@ -1,6 +1,8 @@
 var d3          = require('d3');
 
-module.exports = function (calendar) {
+module.exports = function (calendar, counters) {
+
+	console.log(counters);
 
 	var days = 365;
 	var angle = 2*Math.PI / days;
@@ -35,6 +37,8 @@ module.exports = function (calendar) {
 		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(i) )) )) / 10;
 		var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(i) )) )) / 10;
 
+
+
 		lineData.push({
 			x: x,
 			y: y
@@ -47,7 +51,8 @@ module.exports = function (calendar) {
 		.y(function(d) { return d.y; });
 
 	calendar.append("path")
-		.attr("d", lineFunction(lineData));
+		.attr("d", lineFunction(lineData))
+		.classed("mj-counter__graph", true);
 
 
 
