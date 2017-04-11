@@ -472,7 +472,7 @@ module.exports = function (calendar, notes) {
 
 			console.log(parsed);
 
-			parsed.forEach(function(item, key) {
+			for (key in parsed) {
 				var note = day.append("g")
 					.append("circle")
 					.attr("r", "0.5")
@@ -485,11 +485,11 @@ module.exports = function (calendar, notes) {
 							return 'rotate(' + ( (noteData.day) * (0.9863) + 90) + ', 0, 0)';
 						}
 					})
-					.attr("data-value-" + key, item)
+					.attr("data-value-" + key, parsed[key])
 					.classed('mj-calendar__counter', true);
 
 
-			});
+			}
 		}
 
 		//console.log(noteData);
