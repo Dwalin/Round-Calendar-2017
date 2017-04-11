@@ -485,7 +485,7 @@ module.exports = function (calendar, notes) {
 							return 'rotate(' + ( (noteData.day) * (0.9863) + 90) + ', 0, 0)';
 						}
 					})
-					.attr("data-value-" + key, parsed[key])
+					.attr("data-value", parsed[key])
 					.classed('mj-calendar__counter', true);
 
 
