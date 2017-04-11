@@ -476,7 +476,6 @@ class IndexController extends RestController {
 
 
         if ($counter->save() == true) {
-            die("lol1");
 
             $response->setStatusCode(201, "Success");
             $response->setJsonContent(
@@ -487,15 +486,10 @@ class IndexController extends RestController {
                 )
             );
 
-            return $response;
-
         } else {
-
-            die("lol2");
 
             $response->setStatusCode(409, "Conflict");
 
-            // Send errors to the client
             $errors = array();
             foreach ($counter->getMessages() as $message) {
                 $errors[] = $message->getMessage();
@@ -508,11 +502,9 @@ class IndexController extends RestController {
                     'calendar' => $counter->toArray()
                 )
             );
-
-            return $response;
         }
 
-        die("lol3");
+        return $response;
 
     }
 
