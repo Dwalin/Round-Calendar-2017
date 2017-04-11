@@ -39,8 +39,6 @@ module.exports = function (calendar) {
 			x: x,
 			y: y
 		});
-
-		j++;
 	}
 
 
