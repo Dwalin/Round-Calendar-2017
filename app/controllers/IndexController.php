@@ -475,8 +475,6 @@ class IndexController extends RestController {
             $counter -> type_id       = $type;
         }
 
-        die(var_dump($counter->toArray()));
-
         if ($counter->save() == true) {
 
             $response->setStatusCode(201, "Success");
