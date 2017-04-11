@@ -67,20 +67,21 @@ $(function() {
 			counter[counterName] =  self.counterForm.value();
 
 			var data = {
-				counter: JSON.stringify(counter),
+				value: self.counterForm.value(),
+				name: self.counterForm.name(),
 				day: day
 			};
 
 
 			$.ajax({
 				type: "POST",
-				url: "http://2017.fyi/api/calendar/counter/",
+				url: "http://2017.fyi/api/calendar/counters/",
 				data: data,
 				dataType: "JSON",
 				success: function(data) {
 
 					$(".js-input").val('');
-					self.renderNotes();
+					self.renderCounters();
 				},
 				error: function(data) {
 					//console.log(data.responseText);

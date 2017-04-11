@@ -4,6 +4,11 @@ module.exports = function (calendar, counters) {
 
 	console.log(counters);
 
+	d3.selectAll(".mj-calendar__counters").remove();
+
+	var placement = calendar.append("g")
+		.classed("mj-calendar__counters", true);
+
 	var days = 365;
 	var angle = 2*Math.PI / days;
 
@@ -45,7 +50,7 @@ module.exports = function (calendar, counters) {
 		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(day) )) )) / 10;
 		var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(day) )) )) / 10;
 
-		calendar.append("circle")
+		placement.append("circle")
 			.attr("cx", x)
 			.attr("cy", y)
 			.attr("r", 1)
@@ -69,7 +74,7 @@ module.exports = function (calendar, counters) {
 		.x(function(d) { return d.x; })
 		.y(function(d) { return d.y; });
 
-	calendar.append("path")
+	placement.append("path")
 		.attr("d", lineFunction(lineData))
 		.attr("fill", "transparent")
 		.classed("mj-counter__graph", true);
