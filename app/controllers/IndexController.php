@@ -474,9 +474,13 @@ class IndexController extends RestController {
             $counter -> type_id       = $type;
         }
 
-        die("lol");
+
 
         if ($counter -> save() == true) {
+
+
+            die("lol");
+
             $response->setStatusCode(201, "Success");
             $response->setJsonContent(
                 array(
