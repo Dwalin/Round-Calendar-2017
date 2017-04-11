@@ -478,9 +478,6 @@ class IndexController extends RestController {
 
         if ($counter -> save() == true) {
 
-
-            die("lol");
-
             $response->setStatusCode(201, "Success");
             $response->setJsonContent(
                 array(
@@ -490,7 +487,9 @@ class IndexController extends RestController {
                 )
             );
         } else {
-            // Change the HTTP status
+
+            die("lol");
+
             $response->setStatusCode(409, "Conflict");
 
             // Send errors to the client
