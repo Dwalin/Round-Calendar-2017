@@ -474,6 +474,7 @@ class IndexController extends RestController {
             $counter -> type_id       = $type;
         }
 
+        die($counter -> save());
 
 
         if ($counter -> save() == true) {
