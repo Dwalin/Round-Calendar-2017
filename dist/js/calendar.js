@@ -340,22 +340,13 @@ $(function() {
 		}
 	};
 
-	//ko.bindingHandlers.note = {
-	//	init: function(element, valueAccessor) {
-	//
-	//	}
-	//};
+	ko.bindingHandlers.note = {
+		init: function(element, valueAccessor) {
+
+		}
+	};
 
 	ko.applyBindings( new calendarVM() );
-
-
-	$(document).on("click", ".mj-calendar__circle", function(){
-
-		console.log("Note adding popup.");
-
-		$(".js-popup__note").removeClass("js-hidden");
-		$(this).val( $(this).parent().attr("data-note") );
-	});
 
 
 	// ! Knockout stuff //
