@@ -407,12 +407,7 @@ class IndexController extends RestController {
                 $counter["type"] = $type->toArray()[0]["name"];
             }
 
-            $response->setJsonContent(
-                array(
-                    'status'     => 'OK',
-                    'counters'   => $counters
-                )
-            );
+            $response->setJsonContent($counters);
         } else {
             $response->setStatusCode(404, "Not found");
             $response->setJsonContent(

@@ -50,6 +50,7 @@ module.exports = function (calendar, counters) {
 		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(day) )) )) / 10;
 		var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(day) )) )) / 10;
 
+
 		placement.append("circle")
 			.attr("cx", x)
 			.attr("cy", y)
