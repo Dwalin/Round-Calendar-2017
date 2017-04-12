@@ -402,6 +402,8 @@ class IndexController extends RestController {
         if ($counters) {
             $response->setStatusCode(201, "Success");
 
+            $processed = new array;
+
             foreach ($counters as $key => $counter) {
                 $type = Countertypes::findFirst($counter["type_id"]);
                 $counters[$key]["type"] = $type->toArray()["name"];
@@ -410,9 +412,13 @@ class IndexController extends RestController {
                 unset($counters[$key]["modified"]);
                 unset($counters[$key]["calendar_id"]);
                 unset($counters[$key]["id"]);
+
+                $processed[$counters[$key]["type"]][] = array($counters[$key]["day"], $counters[$key]["value"]);
+
+
             }
 
-            $response->setJsonContent($counters);
+            $response->setJsonContent($processed);
 
         } else {
             $response->setStatusCode(404, "Not found");
