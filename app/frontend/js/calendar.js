@@ -749,8 +749,6 @@ module.exports = function (calendar, counters) {
 
 	for (var key in counters) {
 
-		console.log(counters[key]);
-
 		var counterGroup = placement.append("g")
 			.classed("cal-counter__box", true)
 			.classed("_" + key, true);
@@ -774,7 +772,8 @@ module.exports = function (calendar, counters) {
 
 		var lineFunction = d3.line()
 			.x(function(d) { return d.x; })
-			.y(function(d) { return d.y; });
+			.y(function(d) { return d.y; })
+			.curve(d3.curveCatmullRom.alpha(0.15));
 
 		counterGroup.append("path")
 			.attr("d", lineFunction(lineData))

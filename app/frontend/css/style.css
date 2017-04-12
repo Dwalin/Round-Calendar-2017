@@ -1584,5 +1584,9 @@ body * {
 }
 .mj-counter__graph {
   stroke: #50c8f0;
-  stroke-weight: 0.5px;
+  stroke-weight: 0.25px;
+  opacity: 0.5;
+}
+.mj-counter__marker {
+  fill: #50c8f0;
 }

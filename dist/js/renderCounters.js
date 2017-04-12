@@ -54,7 +54,10 @@ module.exports = function (calendar, counters) {
 			counterGroup.append("circle")
 				.attr("cx", x)
 				.attr("cy", y)
-				.attr("r", 1);
+				.attr("r", 1)
+				.classed("mj-counter__marker", true)
+
+
 			lineData.push({
 				x: x,
 				y: y
@@ -63,7 +66,8 @@ module.exports = function (calendar, counters) {
 
 		var lineFunction = d3.line()
 			.x(function(d) { return d.x; })
-			.y(function(d) { return d.y; });
+			.y(function(d) { return d.y; })
+			.curve(d3.curveCatmullRom.alpha(0.15));
 
 		counterGroup.append("path")
 			.attr("d", lineFunction(lineData))
