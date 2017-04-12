@@ -726,7 +726,7 @@ module.exports = function (calendar, counters) {
 		y: 500
 	};
 
-	var radius = 220;
+	var radius = 250;
 
 	var lineData = [];
 
@@ -751,7 +751,7 @@ module.exports = function (calendar, counters) {
 
 	for (var key in counters) {
 
-		counterRadius = counterRadius - 40;
+		counterRadius = counterRadius - 20;
 
 		var counterGroup = placement.append("g")
 			.classed("cal-counter__box", true)
@@ -769,7 +769,7 @@ module.exports = function (calendar, counters) {
 
 		counterDifference = d3.scaleLinear()
 			.domain([minVal, maxVal])
-			.range([0, 40]);
+			.range([0, 20]);
 
 		counters[key].forEach(function(item, index){
 
@@ -780,7 +780,7 @@ module.exports = function (calendar, counters) {
 			counterGroup.append("circle")
 				.attr("cx", x)
 				.attr("cy", y)
-				.attr("r", 1)
+				.attr("r", 1 + parseFloat(counterDifference(item.value)) )
 				.classed("mj-counter__marker", true);
 
 
