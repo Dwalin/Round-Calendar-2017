@@ -411,7 +411,10 @@ class IndexController extends RestController {
                 unset($counters[$key]["calendar_id"]);
                 unset($counters[$key]["id"]);
 
-                $processed[$counters[$key]["type"]][] = array($counters[$key]["day"] => $counters[$key]["value"]);
+                $processed[$counters[$key]["type"]][] = array(
+                    "day "=> $counters[$key]["day"],
+                    "value" => $counters[$key]["value"]
+                );
 
 
             }

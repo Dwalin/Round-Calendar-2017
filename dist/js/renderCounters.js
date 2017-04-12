@@ -48,7 +48,11 @@ module.exports = function (calendar, counters) {
 			.classed("_" + key, true);
 
 
-		counters[key]
+		counters[key].forEach(function(item, index){
+
+			var day = item.]
+
+		});
 
 		var day = counters[key].day;
 
