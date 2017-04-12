@@ -392,7 +392,8 @@ class IndexController extends RestController {
             "calendar_id = :calendar_id:",
             "bind" => [
                 "calendar_id" => $calendar->toArray()[0]["id"]
-            ]
+            ],
+            "order" => "day DESC"
         ]);
 
         $counters = $counters -> toArray();
