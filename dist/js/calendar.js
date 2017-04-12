@@ -421,9 +421,7 @@ $(function() {
 		url: "http://2017.fyi/api/calendar/counters/",
 		dataType: "JSON",
 		success: function(data) {
-
-
-			renderCounters(graph, data.counters);
+			renderCounters(graph, data);
 		},
 		error: function(data) {
 			//console.log(data.responseText);

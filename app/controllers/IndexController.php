@@ -404,10 +404,11 @@ class IndexController extends RestController {
 
             foreach ($counters as $key => $counter) {
                 $type = Countertypes::findFirst($counter["type_id"]);
-                $counter["type"] = $type->toArray()[0]["name"];
+                $counter["type"] = $type->toArray()["name"];
             }
 
             $response->setJsonContent($counters);
+
         } else {
             $response->setStatusCode(404, "Not found");
             $response->setJsonContent(
