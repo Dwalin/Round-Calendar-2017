@@ -1582,3 +1582,7 @@ body * {
   color: #fff;
   font-weight: 400;
 }
+.mj-counter__graph {
+  stroke: #50c8f0;
+  stroke-weight: 0.5px;
+}
