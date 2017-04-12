@@ -402,7 +402,7 @@ class IndexController extends RestController {
         if ($counters) {
             $response->setStatusCode(201, "Success");
 
-            $processed = new array;
+            $processed = array();
 
             foreach ($counters as $key => $counter) {
                 $type = Countertypes::findFirst($counter["type_id"]);
