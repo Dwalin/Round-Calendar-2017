@@ -405,6 +405,11 @@ class IndexController extends RestController {
             foreach ($counters as $key => $counter) {
                 $type = Countertypes::findFirst($counter["type_id"]);
                 $counter["type"] = $type->toArray()["name"];
+                unset($counter["type_id"]);
+                unset($counter["created"]);
+                unset($counter["modified"]);
+                unset($counter["calendar_id"]);
+                unset($counter["id"]);
             }
 
             $response->setJsonContent($counters);
