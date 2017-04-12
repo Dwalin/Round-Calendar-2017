@@ -747,7 +747,11 @@ module.exports = function (calendar, counters) {
 		.range([0, Math.PI]);
 
 
+	var counterRadius = radius;
+
 	for (var key in counters) {
+
+		counterRadius = counterRadius - 40;
 
 		var counterGroup = placement.append("g")
 			.classed("cal-counter__box", true)
@@ -755,19 +759,36 @@ module.exports = function (calendar, counters) {
 
 		lineData = [];
 
+		var maxVal = 0;
+		var minVal = 10000;
+
+		counters[key].forEach(function(item, index) {
+			if (item.value < minVal) {minVal = item.value}
+			if (item.value > maxVal) {maxVal = item.value}
+		});
+
+		counterDifference = d3.scaleLinear()
+			.domain([minVal, maxVal])
+			.range([0, 40]);
+
 		counters[key].forEach(function(item, index){
+
 			var day = item.day;
-			var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(day) )) )) / 10;
-			var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(day) )) )) / 10;
+			var x = Math.round( 10 * (center.x + ((radius + (counterDifference(item.value))) * Math.sin(normal(day) )) )) / 10;
+			var y = Math.round( 10 * (center.y + ((radius + (counterDifference(item.value))) * Math.cos(normal(day) )) )) / 10;
 
 			counterGroup.append("circle")
 				.attr("cx", x)
 				.attr("cy", y)
-				.attr("r", 1);
+				.attr("r", 1)
+				.classed("mj-counter__marker", true);
+
+
 			lineData.push({
 				x: x,
 				y: y
 			});
+
 		});
 
 		var lineFunction = d3.line()
