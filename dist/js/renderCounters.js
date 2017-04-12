@@ -39,11 +39,16 @@ module.exports = function (calendar, counters) {
 		.range([0, Math.PI]);
 
 
-	var counterData = [];
-
 	for (var key in counters) {
 
 		console.log(counters[key]);
+
+		placement.append("g")
+			.classed("cal-counter__box", true)
+			.classed("_" + key, true);
+
+
+		counters[key]
 
 		var day = counters[key].day;
 
