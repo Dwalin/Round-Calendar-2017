@@ -428,7 +428,9 @@ $(function() {
 			}
 
 		});
-	}
+	};
+
+	goCounters();
 
 });
 
