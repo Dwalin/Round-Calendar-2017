@@ -82,7 +82,7 @@ $(function() {
 				success: function(data) {
 
 					$(".js-input").val('');
-					self.renderCounters();
+					renderCounters();
 				},
 				error: function(data) {
 					//console.log(data.responseText);
