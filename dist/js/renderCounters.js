@@ -62,6 +62,10 @@ module.exports = function (calendar, counters) {
 			.domain([minVal, maxVal])
 			.range([0, 20]);
 
+		counterDifference2 = d3.scaleLinear()
+			.domain([minVal, maxVal])
+			.range([0, 1]);
+
 		counters[key].forEach(function(item, index){
 
 			var day = item.day;
@@ -71,7 +75,8 @@ module.exports = function (calendar, counters) {
 			counterGroup.append("circle")
 				.attr("cx", x)
 				.attr("cy", y)
-				.attr("r", 1 + parseFloat(counterDifference(item.value)) )
+				.attr("data-value", item.value)
+				.attr("r", 1 + parseFloat(counterDifference2(item.value)) )
 				.classed("mj-counter__marker", true);
 
 
