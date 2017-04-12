@@ -20,7 +20,6 @@ module.exports = function (calendar, counters) {
 	var radius = 220;
 
 	var lineData = [];
-	var lineData2 = [];
 
 	var normal = d3.scaleLinear()
 		.domain([0, days * 11.5])
@@ -43,49 +42,48 @@ module.exports = function (calendar, counters) {
 
 		console.log(counters[key]);
 
-		placement.append("g")
+		var counterGroup = placement.append("g")
 			.classed("cal-counter__box", true)
 			.classed("_" + key, true);
 
+		lineData = [];
 
 		counters[key].forEach(function(item, index){
+			var day = item.day;
+			var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(day) )) )) / 10;
+			var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(day) )) )) / 10;
 
-			var day = item.]
-
+			counterGroup.append("circle")
+				.attr("cx", x)
+				.attr("cy", y)
+				.attr("r", 1);
+			lineData.push({
+				x: x,
+				y: y
+			});
 		});
 
-		var day = counters[key].day;
+		var lineFunction = d3.line()
+			.x(function(d) { return d.x; })
+			.y(function(d) { return d.y; });
 
-		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(day) )) )) / 10;
-		var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(day) )) )) / 10;
+		counterGroup.append("path")
+			.attr("d", lineFunction(lineData))
+			.attr("fill", "transparent")
+			.classed("mj-counter__graph", true);
 
-
-		placement.append("circle")
-			.attr("cx", x)
-			.attr("cy", y)
-			.attr("r", 1)
 	}
 
-	for (var i = 0; i < days; i++) {
-
-		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(i) )) )) / 10;
-		var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(i) )) )) / 10;
-
-		lineData.push({
-			x: x,
-			y: y
-		});
-	}
+	//for (var i = 0; i < days; i++) {
+	//
+	//	var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(i) )) )) / 10;
+	//	var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(i) )) )) / 10;
+	//
+	//
+	//}
+	//
 
 
-	var lineFunction = d3.line()
-		.x(function(d) { return d.x; })
-		.y(function(d) { return d.y; });
-
-	placement.append("path")
-		.attr("d", lineFunction(lineData))
-		.attr("fill", "transparent")
-		.classed("mj-counter__graph", true);
 
 
 

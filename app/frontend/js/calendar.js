@@ -729,7 +729,6 @@ module.exports = function (calendar, counters) {
 	var radius = 220;
 
 	var lineData = [];
-	var lineData2 = [];
 
 	var normal = d3.scaleLinear()
 		.domain([0, days * 11.5])
@@ -748,44 +747,52 @@ module.exports = function (calendar, counters) {
 		.range([0, Math.PI]);
 
 
-	var counterData = [];
-
 	for (var key in counters) {
 
 		console.log(counters[key]);
 
-		var day = counters[key].day;
+		var counterGroup = placement.append("g")
+			.classed("cal-counter__box", true)
+			.classed("_" + key, true);
 
-		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(day) )) )) / 10;
-		var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(day) )) )) / 10;
+		lineData = [];
 
+		counters[key].forEach(function(item, index){
+			var day = item.day;
+			var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(day) )) )) / 10;
+			var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(day) )) )) / 10;
 
-		placement.append("circle")
-			.attr("cx", x)
-			.attr("cy", y)
-			.attr("r", 1)
-	}
-
-	for (var i = 0; i < days; i++) {
-
-		var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(i) )) )) / 10;
-		var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(i) )) )) / 10;
-
-		lineData.push({
-			x: x,
-			y: y
+			counterGroup.append("circle")
+				.attr("cx", x)
+				.attr("cy", y)
+				.attr("r", 1);
+			lineData.push({
+				x: x,
+				y: y
+			});
 		});
+
+		var lineFunction = d3.line()
+			.x(function(d) { return d.x; })
+			.y(function(d) { return d.y; });
+
+		counterGroup.append("path")
+			.attr("d", lineFunction(lineData))
+			.attr("fill", "transparent")
+			.classed("mj-counter__graph", true);
+
 	}
 
+	//for (var i = 0; i < days; i++) {
+	//
+	//	var x = Math.round( 10 * (center.x + (radius * Math.sin(normal(i) )) )) / 10;
+	//	var y = Math.round( 10 * (center.y + (radius * Math.cos(normal(i) )) )) / 10;
+	//
+	//
+	//}
+	//
 
-	var lineFunction = d3.line()
-		.x(function(d) { return d.x; })
-		.y(function(d) { return d.y; });
 
-	placement.append("path")
-		.attr("d", lineFunction(lineData))
-		.attr("fill", "transparent")
-		.classed("mj-counter__graph", true);
 
 
 
