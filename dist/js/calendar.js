@@ -81,7 +81,7 @@ $(function() {
 				success: function(data) {
 
 					$(".js-input").val('');
-					renderCounters();
+					goCounters();
 				},
 				error: function(data) {
 					//console.log(data.responseText);
@@ -415,23 +415,22 @@ $(function() {
 
 	renderCalendar(graph);
 
+	var goCounters = function() {
+		$.ajax({
+			type: "GET",
+			url: "http://2017.fyi/api/calendar/counters/",
+			dataType: "JSON",
+			success: function(data) {
+				renderCounters(graph, data);
+			},
+			error: function(data) {
+				//console.log(data.responseText);
+			}
 
-	$.ajax({
-		type: "GET",
-		url: "http://2017.fyi/api/calendar/counters/",
-		dataType: "JSON",
-		success: function(data) {
-			renderCounters(graph, data);
-		},
-		error: function(data) {
-			//console.log(data.responseText);
-		}
-
-	});
-
-
-
+		});
+	}
 
 });
+
 
 

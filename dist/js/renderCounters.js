@@ -70,7 +70,7 @@ module.exports = function (calendar, counters) {
 
 			var day = item.day;
 			var x = Math.round( 10 * (center.x + ((counterRadius + (counterDifference(item.value))) * Math.sin(normal(day) )) )) / 10;
-			var y = Math.round( 10 * (center.y + ((counterRadius + (counterDifference(item.value))) * Math.cos(normal(day) )) )) / 10;
+			var y = Math.round( 10 * (center.y - ((counterRadius + (counterDifference(item.value))) * Math.cos(normal(day) )) )) / 10;
 
 			counterGroup.append("circle")
 				.attr("cx", x)
