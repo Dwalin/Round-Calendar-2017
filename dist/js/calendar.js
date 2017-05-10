@@ -75,7 +75,7 @@ $(function() {
 
 			$.ajax({
 				type: "POST",
-				url: "http://2017.fyi/api/calendar/counters/",
+				url: "https://2017.fyi/api/calendar/counters/",
 				data: data,
 				dataType: "JSON",
 				success: function(data) {
@@ -113,7 +113,7 @@ $(function() {
 
 			$.ajax({
 				type: "POST",
-				url: "http://2017.fyi/api/calendar/",
+				url: "https://2017.fyi/api/calendar/",
 				data: data,
 				dataType: "JSON",
 				success: function(data) {
@@ -167,7 +167,7 @@ $(function() {
 			$.ajax({
 				dataType: "json",
 				data: "",
-				url: "http://2017.fyi/api/users/current",
+				url: "https://2017.fyi/api/users/current",
 				success: function(data) {
 					self.loggedIn(true);
 					self.renderNotes();
@@ -184,7 +184,7 @@ $(function() {
 			$.ajax({
 				dataType: "json",
 				data: "",
-				url: "http://2017.fyi/api/calendar/",
+				url: "https://2017.fyi/api/calendar/",
 				success: function(data) {
 					renderNotes(graph, data.notes);
 
@@ -228,7 +228,7 @@ $(function() {
 
 					$.ajax({
 						type: "POST",
-						url: "http://2017.fyi/api/users/register",
+						url: "https://2017.fyi/api/users/register",
 						data: data,
 						dataType: "JSON",
 						success: function(data) {
@@ -263,7 +263,7 @@ $(function() {
 
 					$.ajax({
 						type: "POST",
-						url: "http://2017.fyi/api/users/login",
+						url: "https://2017.fyi/api/users/login",
 						data: data,
 						dataType: "JSON",
 						success: function(data) {
@@ -285,7 +285,7 @@ $(function() {
 		self.logOut = function() {
 			$.ajax({
 				type: "GET",
-				url: "http://2017.fyi/api/users/logout",
+				url: "https://2017.fyi/api/users/logout",
 				dataType: "JSON",
 				success: function(data) {
 					//console.log("succes");
@@ -346,7 +346,7 @@ $(function() {
 		init: function(element, valueAccessor) {
 			$(document).on("click", ".mj-calendar__circle", function(){
 
-				//console.log("Note adding popup.");
+				console.log("Note adding popup.");
 
 				$(".js-popup__note").removeClass("js-hidden");
 				$(element).val( $(this).parent().attr("data-note") );
@@ -418,7 +418,7 @@ $(function() {
 	var goCounters = function() {
 		$.ajax({
 			type: "GET",
-			url: "http://2017.fyi/api/calendar/counters/",
+			url: "https://2017.fyi/api/calendar/counters/",
 			dataType: "JSON",
 			success: function(data) {
 				renderCounters(graph, data);
